@@ -1,20 +1,20 @@
-SAINSEC CYBEROPS
-================
-Multi-page cybersecurity reference website.
+SAINSEC CYBEROPS — FINAL MULTI-PAGE BUILD
 
 Pages:
-- index.html      Home
-- about.html      About
-- experience.html Experience
-- toolkit.html    SOC Investigation Toolkit
-- resources.html  Cybersecurity Resources
-- roadmap.html    Learning Roadmap
-- cti.html        Threat Intelligence Desk
-- blogs.html      Blogs & Investigation Notes
-- contact.html    Contact
+- / — Home
+- /about/ — About
+- /experience/ — Experience
+- /toolkit/ — SOC Investigation Toolkit
+- /resources/ — Cybersecurity Resources
+- /roadmap/ — Learning Roadmap
+- /cti/ — Threat Intelligence Desk
+- /blogs/ — Blogs & Investigation Notes
+- /contact/ — Contact
 
-Shared:
-- style.css
-- app.js
-
-Navigation is now page-based rather than a single long scrolling page. Toolkit and Resources remain interactive and use the shared JavaScript data layer.
+Features:
+- Clean Vercel URLs without .html in the browser
+- Alert-first SOC investigation toolkit with KQL starting points
+- Expanded cybersecurity resource categories
+- Every resource includes Check, Use for and official Open link
+- SEO canonical, robots and Open Graph metadata
+- Multi-page sitemap and robots.txt

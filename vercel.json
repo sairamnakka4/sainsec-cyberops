@@ -1,0 +1,68 @@
+{
+  "rewrites": [
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/about/",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/experience",
+      "destination": "/experience.html"
+    },
+    {
+      "source": "/experience/",
+      "destination": "/experience.html"
+    },
+    {
+      "source": "/toolkit",
+      "destination": "/toolkit.html"
+    },
+    {
+      "source": "/toolkit/",
+      "destination": "/toolkit.html"
+    },
+    {
+      "source": "/resources",
+      "destination": "/resources.html"
+    },
+    {
+      "source": "/resources/",
+      "destination": "/resources.html"
+    },
+    {
+      "source": "/roadmap",
+      "destination": "/roadmap.html"
+    },
+    {
+      "source": "/roadmap/",
+      "destination": "/roadmap.html"
+    },
+    {
+      "source": "/cti",
+      "destination": "/cti.html"
+    },
+    {
+      "source": "/cti/",
+      "destination": "/cti.html"
+    },
+    {
+      "source": "/blogs",
+      "destination": "/blogs.html"
+    },
+    {
+      "source": "/blogs/",
+      "destination": "/blogs.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/contact/",
+      "destination": "/contact.html"
+    }
+  ]
+}
