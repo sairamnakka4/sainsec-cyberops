@@ -128,11 +128,96 @@ function render(){
  }).join("");
  document.getElementById("count").textContent=total+" investigation playbooks";
 }
-document.getElementById("search").addEventListener("input",render);render();
+if(document.getElementById("search") && document.getElementById("toolkitGrid")){ document.getElementById("search").addEventListener("input",render); render(); }
 
-const resources=[["Microsoft Sentinel","SIEM / analytics","https://azure.microsoft.com/products/microsoft-sentinel/"],["Microsoft Defender XDR","Endpoint & XDR","https://security.microsoft.com/"],["Microsoft Sysinternals","Windows investigation","https://learn.microsoft.com/sysinternals/"],["VirusTotal","IOC enrichment","https://www.virustotal.com/"],["AbuseIPDB","IP reputation","https://www.abuseipdb.com/"],["GreyNoise","Internet scanner context","https://www.greynoise.io/"],["URLScan","URL/domain analysis","https://urlscan.io/"],["ThreatFox","IOC intelligence","https://threatfox.abuse.ch/"],["MalwareBazaar","Malware samples / hashes","https://bazaar.abuse.ch/"],["Wireshark","Packet analysis","https://www.wireshark.org/"],["MITRE ATT&CK","Adversary techniques","https://attack.mitre.org/"],["CyberChef","Encoding / decoding","https://gchq.github.io/CyberChef/"],["OWASP","Application security","https://owasp.org/"],["PortSwigger Academy","Web security learning","https://portswigger.net/web-security"],["CISA KEV","Known exploited vulnerabilities","https://www.cisa.gov/known-exploited-vulnerabilities-catalog"],["NIST SP 800-61","Incident response reference","https://csrc.nist.gov/pubs/sp/800/61/r2/final"]];
-document.getElementById("resourcesGrid").innerHTML=resources.map(r=>`<article><h3>${r[0]}</h3><p>${r[1]}</p><a class="green" href="${r[2]}" target="_blank">Open official resource →</a></article>`).join("");
-document.getElementById("menu").onclick=()=>document.body.classList.toggle("mobile");
+const resourceCategories=[
+["01 / MALWARE & URL ANALYSIS","Investigate suspicious files, URLs, domains and IPs. Check reputation, malware behavior, phishing indicators, sandbox activity and related IOCs.",[
+["VirusTotal","File/hash/URL/IP/domain reputation, detections, related IOCs and community context.","Malware, phishing, suspicious files, URLs and IOC investigations.","https://www.virustotal.com/"],
+["ANY.RUN","Interactive sandbox behavior including processes, commands, DNS, network connections, files and IOCs.","Malware samples, phishing attachments, suspicious executables and URLs.","https://any.run/"],
+["Hybrid Analysis","Static/dynamic analysis results, processes, network indicators, hashes, YARA matches and sandbox reports.","Malware analysis and suspicious file/URL investigations.","https://www.hybrid-analysis.com/"],
+["Cisco Talos","IP/domain reputation, threat intelligence, vulnerability research and security research reports.","Suspicious IP/domain, malware and vulnerability investigations.","https://talosintelligence.com/"],
+["URLScan","URL/page behavior, redirects, requests, domains, IPs, screenshots and web indicators.","Phishing URLs, malicious links and web-based alerts.","https://urlscan.io/"],
+["MalwareBazaar","Malware hashes, samples, tags and related malware intelligence.","Malware hash/file investigations and sample pivoting.","https://bazaar.abuse.ch/"],
+["PhishTank","Reported phishing URLs and community verification information.","Phishing URL and suspicious email investigations.","https://phishtank.org/"],
+["AbuseIPDB","IP abuse reports, confidence information, categories and historical reports.","Brute force, scanning, suspicious inbound connections and malicious IP alerts.","https://www.abuseipdb.com/"],
+["GreyNoise","Internet scanning activity and context around observed scanner IPs.","Port scanning, reconnaissance and suspicious source IP investigations.","https://www.greynoise.io/"]]],
+["02 / THREAT INTELLIGENCE","Gather context on threat actors, campaigns, malicious infrastructure, IOCs and adversary techniques.",[
+["Microsoft Threat Intelligence","Microsoft threat research, actor activity, campaigns and intelligence reports.","Threat actor, malware and campaign investigations.","https://www.microsoft.com/en-us/security/blog/topic/threat-intelligence/"],
+["Google Threat Intelligence / Mandiant","Threat research, incident investigations, actor activity and campaign intelligence.","Threat actor, intrusion and campaign investigations.","https://cloud.google.com/blog/topics/threat-intelligence"],
+["AlienVault OTX","Community threat intelligence, pulses and IOC searches.","IOC enrichment, threat hunting and campaign research.","https://otx.alienvault.com/"],
+["ThreatFox","Malicious IPs, domains, URLs, hashes and other indicators.","IOC enrichment and malware infrastructure investigations.","https://threatfox.abuse.ch/"],
+["MITRE ATT&CK","Adversary tactics, techniques, procedures, software and threat actor mappings.","Alert investigation, threat hunting and detection mapping.","https://attack.mitre.org/"],
+["ATT&CK Navigator","Visualize and compare ATT&CK techniques and coverage.","Detection coverage reviews and threat-hunting planning.","https://mitre-attack.github.io/attack-navigator/"],
+["Shodan","Internet-exposed devices, ports, services and banners.","Suspicious IP, exposed asset and reconnaissance investigations.","https://www.shodan.io/"],
+["SecurityTrails","DNS, domain, subdomain and infrastructure relationships.","Domain pivots, phishing and C2 infrastructure investigations.","https://securitytrails.com/"]]],
+["03 / CVE & VULNERABILITY INTELLIGENCE","Track CVEs, affected products, severity, exploitation activity, patches and current vulnerability news.",[
+["CVE.org","CVE IDs, vulnerability descriptions, affected products and references.","CVE research and vulnerability investigations.","https://www.cve.org/"],
+["NVD","CVE details, CVSS, CWE, affected products and vulnerability references.","Vulnerability triage, risk context and CVE investigations.","https://nvd.nist.gov/"],
+["CISA KEV","Known exploited CVEs, affected products, exploitation status and remediation deadlines.","Vulnerability alerts, patch prioritization and exploited-CVE investigations.","https://www.cisa.gov/known-exploited-vulnerabilities-catalog"],
+["FIRST CVSS","CVSS scoring concepts and severity metrics.","Understanding and validating vulnerability severity.","https://www.first.org/cvss/"],
+["Cisco Talos Vulnerability Research","Disclosed vulnerabilities, zero-day research, CVE references and vendor disclosures.","New vulnerability research and exploitation-context investigations.","https://www.talosintelligence.com/vulnerability_info"],
+["BleepingComputer CVE","Recent CVE news, exploitation reports, patches and real-world vulnerability developments.","Keeping up with actively discussed or exploited CVEs.","https://www.bleepingcomputer.com/tag/cve/"],
+["SecurityWeek Vulnerabilities","Vulnerability disclosures, exploitation and security research news.","CVE monitoring and vulnerability news.","https://www.securityweek.com/category/vulnerabilities/"],
+["Dark Reading Vulnerabilities","Vulnerability and threat developments with security analysis.","CVE news, exploitation and enterprise security updates.","https://www.darkreading.com/vulnerabilities-threats"]]],
+["04 / CYBERSECURITY NEWS","Follow current cyber attacks, breaches, malware campaigns, vulnerabilities, threat actors and security industry updates.",[
+["Cybernews","Cybersecurity news, breaches, threats, privacy and technology updates.","Daily cyber news and emerging threat awareness.","https://cybernews.com/"],
+["The Hacker News","Cybersecurity news covering threats, vulnerabilities, breaches and security research.","Daily security news and incident awareness.","https://thehackernews.com/"],
+["BleepingComputer","Cybersecurity, malware, vulnerability, ransomware and incident news.","Malware, ransomware, CVE and breach monitoring.","https://www.bleepingcomputer.com/news/"],
+["KrebsOnSecurity","Investigative cybersecurity reporting and security incident coverage.","Fraud, breaches, cybercrime and security research.","https://krebsonsecurity.com/"],
+["SecurityWeek","Enterprise security, vulnerability and threat intelligence news.","Vulnerability and security operations updates.","https://www.securityweek.com/"],
+["Dark Reading","Enterprise cybersecurity, threats, vulnerabilities and security analysis.","Threat, vulnerability and security operations news.","https://www.darkreading.com/"],
+["The Record","Cybercrime, nation-state activity, security policy and technology reporting.","Threat landscape and major cyber incident awareness.","https://therecord.media/"]]],
+["05 / SERVICE STATUS & OUTAGE MONITORING","Check whether cloud, security and SaaS platforms have an active incident, degradation, outage or maintenance event.",[
+["Azure Status","Global Azure service health, active incidents and status history.","Azure/Sentinel-related service issues and cloud outage validation.","https://azure.status.microsoft/en-us/status"],
+["Microsoft 365 Status","Microsoft 365 service health, active incidents, advisories and history.","M365, Exchange, Teams and identity/service availability issues.","https://status.cloud.microsoft/"],
+["AWS Health Dashboard","Current and historical AWS service health and account-impacting events.","AWS service outage and cloud incident validation.","https://health.aws.amazon.com/"],
+["Google Cloud Status","Google Cloud product and regional service status.","GCP service availability and outage validation.","https://status.cloud.google.com/"],
+["CrowdStrike Status","CrowdStrike service incidents and maintenance updates.","EDR/Sensor, console or service availability issues.","https://status.crowdstrike.com/"],
+["SentinelOne Status","SentinelOne platform service health and incidents.","EDR platform availability and console issues.","https://status.sentinelone.com/"],
+["Okta Status","Okta service incidents, degradation and maintenance.","Identity, SSO and authentication service issues.","https://status.okta.com/"],
+["Palo Alto Status","Palo Alto Networks service and cloud platform status.","Firewall/cloud security service availability issues.","https://status.paloaltonetworks.com/"],
+["Fortinet Status","Fortinet service and cloud platform status information.","Fortinet service availability and incident validation.","https://status.fortinet.com/"],
+["Splunk Status","Splunk Cloud service status and incidents.","SIEM/search availability and ingestion issues.","https://status.splunk.com/"],
+["Elastic Status","Elastic Cloud service health and incidents.","Elastic SIEM/search availability issues.","https://status.elastic.co/"],
+["Cloudflare Status","Cloudflare incidents, maintenance and service status.","DNS, CDN, WAF and edge-service outage validation.","https://www.cloudflarestatus.com/"],
+["GitHub Status","GitHub service incidents and operational status.","Repository, Actions and GitHub service availability issues.","https://www.githubstatus.com/"],
+["Cisco Status","Cisco service and cloud platform status information.","Cisco security/network service availability validation.","https://status.cisco.com/"]]],
+["06 / SOC & DETECTION ENGINEERING","Build, investigate and tune detections using SIEM, XDR, ATT&CK, Sigma, YARA and trusted security references.",[
+["Microsoft Sentinel","SIEM analytics, hunting, incidents, workbooks and KQL-based detections.","SOC alert triage, threat hunting, use-case tuning and log investigation.","https://azure.microsoft.com/products/microsoft-sentinel/"],
+["Microsoft Defender XDR","Incidents, alerts, device/entity context and cross-domain investigation.","Endpoint, identity, email and XDR investigations.","https://security.microsoft.com/"],
+["Microsoft Learn","Official Microsoft security, Sentinel, Defender and Entra documentation.","Detection engineering, configuration and investigation reference.","https://learn.microsoft.com/"],
+["Microsoft Sysinternals","Windows process, system, network and troubleshooting utilities.","Process creation, persistence, suspicious execution and endpoint investigation.","https://learn.microsoft.com/sysinternals/"],
+["MITRE ATT&CK","Technique and tactic mappings for adversary behavior.","Detection mapping, threat hunting and incident analysis.","https://attack.mitre.org/"],
+["Sigma","Generic rule format for SIEM detections and detection sharing.","Detection engineering and rule development.","https://sigmahq.io/"],
+["YARA","Pattern-based rules for identifying malware and suspicious files.","Malware triage, hunting and file classification.","https://yara.readthedocs.io/"],
+["LOLBAS","Windows signed binaries and living-off-the-land abuse techniques.","Suspicious LOLBin, PowerShell and execution investigations.","https://lolbas-project.github.io/"],
+["GTFOBins","Unix binaries that can be abused for privilege escalation and execution.","Linux privilege escalation and command abuse investigations.","https://gtfobins.github.io/"]]],
+["07 / DFIR & MALWARE RESEARCH","Support digital forensics, memory analysis, endpoint investigation, malware research, disk analysis and incident response.",[
+["Volatility","Memory acquisition analysis concepts, processes, handles, network and other memory artifacts.","Memory forensics and suspected malware/compromise investigations.","https://volatilityfoundation.org/"],
+["Autopsy","Disk and filesystem investigation, timelines and forensic artifacts.","Endpoint, disk and incident-response investigations.","https://www.autopsy.com/"],
+["Sleuth Kit","Open-source filesystem and disk forensic analysis tools.","Disk image and filesystem investigations.","https://www.sleuthkit.org/"],
+["Eric Zimmerman Tools","Windows forensic artifact parsing and timeline-focused utilities.","Windows endpoint and DFIR investigations.","https://ericzimmerman.github.io/"],
+["Velociraptor","Endpoint collection, hunting and forensic artifact acquisition.","Live response, threat hunting and endpoint investigations.","https://docs.velociraptor.app/"],
+["KAPE","Rapid collection and processing of Windows forensic artifacts.","Incident response, triage and evidence collection.","https://www.kroll.com/en/insights/publications/cyber/kape"],
+["Wireshark","Packet captures, protocols, sessions, endpoints and network conversations.","C2, exfiltration, suspicious traffic and network incident investigations.","https://www.wireshark.org/"],
+["Zeek","Network security monitoring logs and protocol metadata.","Network hunting, lateral movement, DNS and connection analysis.","https://zeek.org/"],
+["Suricata","Network IDS/IPS alerts and protocol inspection.","Malicious traffic, exploit attempts and network detections.","https://suricata.io/"]]],
+["08 / ANALYST UTILITIES","Use these utilities for IOC enrichment, decoding, DNS/WHOIS checks, email analysis, reputation checks and quick SOC investigations.",[
+["CyberChef","Base64, Hex, URL encoding, strings, timestamps, hashes and other transformations/decoding.","Encoded PowerShell, suspicious commands, malware analysis and log investigation.","https://gchq.github.io/CyberChef/"],
+["WHOIS / RDAP","Domain registration, registrar, dates and registration-related information.","Phishing domains, suspicious URLs and C2/domain investigations.","https://lookup.icann.org/en"],
+["MXToolbox","DNS, MX records, blacklist checks and email-related DNS information.","Phishing, suspicious domains and mail-server investigations.","https://mxtoolbox.com/"],
+["Have I Been Pwned","Known breach exposure for email addresses and related breach context.","Credential exposure and account-compromise investigations.","https://haveibeenpwned.com/"],
+["Google Message Header Analyzer","Parse email headers and inspect routing/header information.","Phishing and suspicious-email investigations.","https://toolbox.googleapps.com/apps/messageheader/"],
+["Nmap","Hosts, ports, services and network discovery information.","Port scanning, exposed services and network reconnaissance investigations.","https://nmap.org/"],
+["tcpdump","Command-line packet capture and traffic inspection.","Network troubleshooting, suspicious traffic and incident investigations.","https://www.tcpdump.org/"],
+["OWASP","Web application security guidance, risks and testing references.","Web attacks, application-security alerts and vulnerability investigations.","https://owasp.org/"],
+["PortSwigger Web Security Academy","Interactive web security labs and vulnerability learning resources.","Web attack investigation, validation and analyst learning.","https://portswigger.net/web-security"]]]
+];
+
+function resourceCard(r){return `<article class="resource-card"><div class="resource-top"><h3>${esc(r[0])}</h3><a class="resource-link" href="${r[3]}" target="_blank" rel="noopener noreferrer" aria-label="Open ${esc(r[0])}">↗ Open</a></div><ul><li><b>Check:</b> ${esc(r[1])}</li><li><b>Use for:</b> ${esc(r[2])}</li></ul></article>`;}
+function renderResources(){document.getElementById("resourcesGrid").innerHTML=resourceCategories.map((c,i)=>`<div class="resource-category ${i===0?'open':''}"><button class="resource-cat-head" onclick="this.parentElement.classList.toggle('open')"><span><small>${esc(c[0])}</small><strong>${esc(c[0].replace(/^\d+ \/ /,''))}</strong></span><span class="resource-count">${c[2].length} RESOURCES ▾</span></button><div class="resource-desc">${esc(c[1])}</div><div class="resource-items">${c[2].map(resourceCard).join('')}</div></div>`).join('');}
+if(document.getElementById("resourcesGrid")) renderResources();
+if(document.getElementById("menu")) document.getElementById("menu").onclick=()=>document.body.classList.toggle("mobile");
 
 
 /* ===== SAINSEC CYBEROPS CONSOLIDATED FINAL UI LAYER ===== */
@@ -372,7 +457,7 @@ function sainsecRender(){
     </div>`).join("");
 }
 
-if(!document.getElementById("severity")){
+if(document.getElementById("toolkitGrid") && !document.getElementById("severity")){
   const bar=document.querySelector(".toolbar");
   if(bar){
     const input=document.getElementById("search");
@@ -383,5 +468,5 @@ if(!document.getElementById("severity")){
     sel.addEventListener("change",sainsecRender);
   }
 }
-sainsecRender();
+if(document.getElementById("toolkitGrid")) sainsecRender();
 /* ===== END CONSOLIDATED FINAL UI LAYER ===== */
