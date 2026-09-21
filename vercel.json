@@ -33,28 +33,36 @@
       "destination": "/resources.html"
     },
     {
-      "source": "/roadmap",
-      "destination": "/roadmap.html"
+      "source": "/threat-intelligence",
+      "destination": "/threat-intelligence.html"
     },
     {
-      "source": "/roadmap/",
-      "destination": "/roadmap.html"
+      "source": "/threat-intelligence/",
+      "destination": "/threat-intelligence.html"
     },
     {
-      "source": "/cti",
-      "destination": "/cti.html"
+      "source": "/news",
+      "destination": "/news.html"
     },
     {
-      "source": "/cti/",
-      "destination": "/cti.html"
+      "source": "/news/",
+      "destination": "/news.html"
     },
     {
-      "source": "/blogs",
-      "destination": "/blogs.html"
+      "source": "/insights",
+      "destination": "/insights.html"
     },
     {
-      "source": "/blogs/",
-      "destination": "/blogs.html"
+      "source": "/insights/",
+      "destination": "/insights.html"
+    },
+    {
+      "source": "/status",
+      "destination": "/status.html"
+    },
+    {
+      "source": "/status/",
+      "destination": "/status.html"
     },
     {
       "source": "/contact",
@@ -63,6 +71,14 @@
     {
       "source": "/contact/",
       "destination": "/contact.html"
+    },
+    {
+      "source": "/cti",
+      "destination": "/threat-intelligence.html"
+    },
+    {
+      "source": "/cti/",
+      "destination": "/threat-intelligence.html"
     }
   ]
 }
