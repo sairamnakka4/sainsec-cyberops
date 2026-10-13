@@ -56,3 +56,11 @@ body{background:var(--alert-bg);color:var(--alert-text)}
 .classification-panel{padding:12px}
 .alert-body{gap:15px}
 .alert-card{margin-bottom:0}
+
+/* Table/data-source query pivots */
+.query-pivot-tabs{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}
+.query-pivot-tabs button{max-width:100%;background:#10232d;border:1px solid #25424b;color:var(--alert-text);padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.78rem;text-align:left}
+.query-pivot-tabs button[aria-selected="true"]{border-color:var(--alert-accent);color:var(--alert-accent);background:#10352f}
+.query-pivot-tabs button:hover{border-color:var(--alert-accent)}
+.query-tabs button{white-space:normal}
+.query-code{white-space:pre;overflow:auto;max-height:460px}
