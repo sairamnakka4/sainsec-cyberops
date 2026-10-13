@@ -79,6 +79,14 @@
     {
       "source": "/cti/",
       "destination": "/threat-intelligence.html"
+    },
+    {
+      "source": "/alerts",
+      "destination": "/alerts.html"
+    },
+    {
+      "source": "/alerts/",
+      "destination": "/alerts.html"
     }
   ]
 }
