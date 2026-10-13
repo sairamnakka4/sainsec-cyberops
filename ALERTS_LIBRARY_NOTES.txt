@@ -1,0 +1,13 @@
+SAINSEC CYBEROPS - SOC Alert Library
+
+New files: alerts.html, alerts.css, alerts.js, alerts-data.js.
+Existing page content was preserved except adding the SOC Alert Library navigation link. Vercel rewrites and sitemap entry were added for /alerts/.
+
+IMPORTANT QUERY VALIDATION NOTES
+- The 150 playbooks have 10 structured investigation steps each, with alert title/context, field capture guidance and evidence-based analysis placeholders.
+- Query examples are investigation starters. The Sentinel query searches SecurityAlert records by alert name where available; it is not a complete detection rule for every native event type.
+- Splunk and QRadar queries are generic pivots and require correct index, event filters, DSM/custom properties and schema mapping.
+- Defender query is an endpoint example only; use product-specific tables for identity, email and cloud alerts.
+- CrowdStrike and SentinelOne entries intentionally provide query/pivot guidance rather than fabricated executable syntax.
+- Validate product version, schema, permissions, logging coverage and time zone before production use. Replace placeholders with evidence. Never claim a finding without logs.
+- Official references are general vendor documentation relevant to the category; individual alert coverage may require additional vendor-specific references.
