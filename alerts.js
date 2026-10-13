@@ -1,4 +1,5 @@
 
+
 (function(){
  const data=window.SAINSEC_ALERTS||[], results=document.getElementById('alert-results'), search=document.getElementById('alert-search'), cat=document.getElementById('category-filter'), sev=document.getElementById('severity-filter'), empty=document.getElementById('empty-state');
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -67,12 +68,27 @@
   results.querySelectorAll('[data-query-tool]').forEach(btn=>btn.addEventListener('click',()=>{
    const card=btn.closest('.alert-card'), idx=Number(btn.dataset.queryTool), alert=data.find(a=>a.id===Number(card.dataset.id));
    card.querySelectorAll('[data-query-tool]').forEach(b=>b.setAttribute('aria-selected',String(b===btn)));
-   const qdata=alert.queries[idx];card.querySelector('.query-code').textContent=qdata.query;
-   card.querySelector('.query-language').textContent=qdata.language+' · '+qdata.purpose;
-   card.querySelector('.query-note').textContent=qdata.note;
-   card.querySelector('.copy-btn').onclick=()=>navigator.clipboard?.writeText(qdata.query);
+   const qdata=alert.queries[idx];
+   renderPivots(card,qdata,0);
   }));
-  results.querySelectorAll('.copy-btn').forEach(btn=>{const card=btn.closest('.alert-card');const alert=data.find(a=>a.id===Number(card.dataset.id));btn.onclick=()=>{const active=card.querySelector('[data-query-tool][aria-selected=true]');navigator.clipboard?.writeText(alert.queries[Number(active.dataset.queryTool)].query);btn.textContent='Copied (if clipboard permission granted)';setTimeout(()=>btn.textContent='Copy query',1800)}});
+  results.querySelectorAll('.copy-btn').forEach(btn=>{if(btn.dataset.close) return;btn.onclick=()=>{const card=btn.closest('.alert-card');const activeTool=card.querySelector('[data-query-tool][aria-selected=true]');const alert=data.find(a=>a.id===Number(card.dataset.id));const qdata=alert.queries[Number(activeTool.dataset.queryTool)];const activePivot=Number(card.querySelector('[data-query-pivot][aria-selected=true]')?.dataset.queryPivot||0);const query=(qdata.pivots&&qdata.pivots[activePivot]?qdata.pivots[activePivot].query:qdata.query);navigator.clipboard?.writeText(query);btn.textContent='Copied (if clipboard permission granted)';setTimeout(()=>btn.textContent='Copy query',1800)}});
+  results.querySelectorAll('[data-query-pivot]').forEach(btn=>btn.addEventListener('click',()=>{
+   const card=btn.closest('.alert-card'), activeTool=card.querySelector('[data-query-tool][aria-selected=true]'), alert=data.find(a=>a.id===Number(card.dataset.id)), qdata=alert.queries[Number(activeTool.dataset.queryTool)];
+   renderPivots(card,qdata,Number(btn.dataset.queryPivot));
+  }));
+ }
+ function renderPivots(card,qdata,index){
+  const pivots=qdata.pivots||[{source:qdata.purpose||'Investigation query',query:qdata.query,note:qdata.note}];
+  const i=Math.max(0,Math.min(index,pivots.length-1)), p=pivots[i];
+  const pivotTabs=card.querySelector('.query-pivot-tabs');
+  pivotTabs.innerHTML=pivots.map((pv,n)=>`<button type="button" data-query-pivot="${n}" aria-selected="${n===i?'true':'false'}">${esc(pv.source)}</button>`).join('');
+  pivotTabs.querySelectorAll('[data-query-pivot]').forEach(btn=>btn.addEventListener('click',()=>{
+   renderPivots(card,qdata,Number(btn.dataset.queryPivot));
+  }));
+  card.querySelector('.query-code').textContent=p.query;
+  card.querySelector('.query-language').textContent=qdata.language+' · '+p.source;
+  card.querySelector('.query-note').textContent=p.note||qdata.note||'Validate schema and source coverage before use.';
+  const copy=card.querySelector('.query-copy-btn');copy.onclick=()=>{navigator.clipboard?.writeText(p.query);copy.textContent='Copied (if clipboard permission granted)';setTimeout(()=>copy.textContent='Copy query',1800)};
  }
  function card(a){
   const refs=a.references.map(r=>`<a href="${esc(r[1])}" target="_blank" rel="noopener noreferrer">${esc(r[0])} ↗</a>`).join('');
@@ -80,7 +96,7 @@
   const classes=Object.entries(a.classifications).map(([k,v])=>`<div class="classification-panel"><h4>${esc(k)}</h4><p><b>Recommendation</b><br>${esc(v.recommendation)}</p><p><b>Sample closure comment</b><br>${esc(v.closure)}</p><button class="copy-btn" data-close="${esc(k)}">Copy closure template</button></div>`).join('');
   const qs=a.queries.map((q,i)=>`<button type="button" data-query-tool="${i}" aria-selected="${i===0?'true':'false'}">${esc(q.tool)}</button>`).join('');
   const first=a.queries[0];
-  return `<article class="alert-card" data-id="${a.id}"><details><summary class="alert-summary"><span class="alert-num">${String(a.id).padStart(3,'0')}</span><div class="alert-title-wrap"><div class="alert-title">${esc(a.name)}</div><div class="alert-meta">${esc(a.category)} · SOC L2 investigation reference</div></div><span class="alert-pill">Open SOP</span></summary><div class="alert-body"><section><h3>Alert overview</h3><p>${esc(a.overview)}</p><div class="overview-grid"><div class="mini-panel"><b>Severity guide</b>${esc(a.severity)}</div><div class="mini-panel"><b>Affected entities</b>${esc(a.entities)}</div><div class="mini-panel"><b>Investigation</b>${a.steps.length} structured steps</div></div><div class="alert-specific-recommendation"><h3>Alert-specific response guidance</h3><p>${esc(a.recommendation)}</p></div></section><section><h3>Investigation steps</h3><p class="muted">Open each step for the analyst action, evidence fields and sample analysis.</p><div class="investigation-steps">${steps}</div></section><section><h3>Detection & investigation query references</h3><p class="muted">These are starters, not guaranteed production detections. Adjust source, event filters, schema and time window for your deployment. Some vendor tabs provide pivot guidance rather than executable syntax.</p><div class="query-panel"><div class="query-tabs" role="tablist">${qs}</div><p class="query-language">${esc(first.language)} · ${esc(first.purpose)}</p><pre class="query-code">${esc(first.query)}</pre><p class="query-note">${esc(first.note)}</p><button class="copy-btn">Copy query</button></div></section><section><h3>Official documentation</h3><div class="reference-list">${refs}</div><p class="muted">Official docs are reference material; they do not prove the activity in your environment.</p></section><section><h3>Classification & closure</h3><p class="muted">Choose the disposition supported by the available evidence. Recommendations and closure templates below are starting points—replace placeholders.</p><div class="classifications">${classes}</div></section></div></details></article>`;
+  return `<article class="alert-card" data-id="${a.id}"><details><summary class="alert-summary"><span class="alert-num">${String(a.id).padStart(3,'0')}</span><div class="alert-title-wrap"><div class="alert-title">${esc(a.name)}</div><div class="alert-meta">${esc(a.category)} · SOC L2 investigation reference</div></div><span class="alert-pill">Open SOP</span></summary><div class="alert-body"><section><h3>Alert overview</h3><p>${esc(a.overview)}</p><div class="overview-grid"><div class="mini-panel"><b>Severity guide</b>${esc(a.severity)}</div><div class="mini-panel"><b>Affected entities</b>${esc(a.entities)}</div><div class="mini-panel"><b>Investigation</b>${a.steps.length} structured steps</div></div><div class="alert-specific-recommendation"><h3>Alert-specific response guidance</h3><p>${esc(a.recommendation)}</p></div></section><section><h3>Investigation steps</h3><p class="muted">Open each step for the analyst action, evidence fields and sample analysis.</p><div class="investigation-steps">${steps}</div></section><section><h3>Detection & investigation query references</h3><p class="muted">These are starters, not guaranteed production detections. Adjust source, event filters, schema and time window for your deployment. Some vendor tabs provide pivot guidance rather than executable syntax.</p><div class="query-panel"><div class="query-tabs" role="tablist">${qs}</div><p class="muted">Select a tool first, then select the relevant table/data source below. Run one query at a time.</p><div class="query-pivot-tabs" role="tablist">${(first.pivots||[{source:first.purpose,query:first.query,note:first.note}]).map((p,i)=>`<button type="button" data-query-pivot="${i}" aria-selected="${i===0?'true':'false'}">${esc(p.source)}</button>`).join('')}</div><p class="query-language">${esc(first.language)} · ${esc((first.pivots&&first.pivots[0].source)||first.purpose)}</p><pre class="query-code">${esc((first.pivots&&first.pivots[0].query)||first.query)}</pre><p class="query-note">${esc((first.pivots&&first.pivots[0].note)||first.note)}</p><button class="copy-btn query-copy-btn">Copy query</button></div></section><section><h3>Official documentation</h3><div class="reference-list">${refs}</div><p class="muted">Official docs are reference material; they do not prove the activity in your environment.</p></section><section><h3>Classification & closure</h3><p class="muted">Choose the disposition supported by the available evidence. Recommendations and closure templates below are starting points—replace placeholders.</p><div class="classifications">${classes}</div></section></div></details></article>`;
  }
  search.addEventListener('input',render);cat.addEventListener('change',render);sev.addEventListener('change',render);
  results.addEventListener('click',e=>{
