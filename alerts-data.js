@@ -23928,5 +23928,4005 @@ window.SAINSEC_ALERTS = [
         "note": "Kibana KQL is a filter language, not the same as Kusto KQL. Field names depend on ECS mappings and your data view."
       }
     ]
+  },
+  {
+    "id": 151,
+    "name": "Unauthorized PLC Logic Modification",
+    "category": "OT Security",
+    "overview": "Investigate Unauthorized PLC Logic Modification using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Validate the controller change event",
+        "check": "Review the OT sensor/PLC engineering audit record for controller identity, project/program identifier, change type, timestamp and result. Use passive telemetry or approved engineering logs.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized PLC Logic Modification telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Establish authorized engineering context",
+        "check": "Confirm the engineering workstation, engineer account, maintenance window, change ticket and approved logic checksum/version with the OT owner.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized PLC Logic Modification telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Compare program versions safely",
+        "check": "Use the plant-approved offline project/version-management process to compare hashes or change reports; do not upload, download or alter a live controller for investigation.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized PLC Logic Modification telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Inspect protocol and session context",
+        "check": "Correlate observed programming protocol, source workstation, destination controller, session timing and whether the session was expected.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized PLC Logic Modification telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized PLC Logic Modification: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized PLC Logic Modification: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized PLC Logic Modification: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized PLC Logic Modification: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized PLC Logic Modification: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized PLC Logic Modification: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: Unauthorized PLC Logic Modification was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to Unauthorized PLC Logic Modification on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: Unauthorized PLC Logic Modification was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for Unauthorized PLC Logic Modification was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"Unauthorized PLC Logic Modification\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"Unauthorized PLC Logic Modification\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 152,
+    "name": "Unexpected PLC Program Download",
+    "category": "OT Security",
+    "overview": "Investigate Unexpected PLC Program Download using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Validate the controller change event",
+        "check": "Review the OT sensor/PLC engineering audit record for controller identity, project/program identifier, change type, timestamp and result. Use passive telemetry or approved engineering logs.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unexpected PLC Program Download telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Establish authorized engineering context",
+        "check": "Confirm the engineering workstation, engineer account, maintenance window, change ticket and approved logic checksum/version with the OT owner.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unexpected PLC Program Download telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Compare program versions safely",
+        "check": "Use the plant-approved offline project/version-management process to compare hashes or change reports; do not upload, download or alter a live controller for investigation.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unexpected PLC Program Download telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Inspect protocol and session context",
+        "check": "Correlate observed programming protocol, source workstation, destination controller, session timing and whether the session was expected.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unexpected PLC Program Download telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unexpected PLC Program Download: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unexpected PLC Program Download: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unexpected PLC Program Download: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unexpected PLC Program Download: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unexpected PLC Program Download: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unexpected PLC Program Download: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: Unexpected PLC Program Download was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to Unexpected PLC Program Download on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: Unexpected PLC Program Download was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for Unexpected PLC Program Download was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"Unexpected PLC Program Download\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"Unexpected PLC Program Download\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 153,
+    "name": "PLC Firmware Change Detected",
+    "category": "OT Security",
+    "overview": "Investigate PLC Firmware Change Detected using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Validate the firmware/configuration event",
+        "check": "Capture device vendor/model, asset ID, old/new version or configuration checksum, timestamp, initiating workstation and event source.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed PLC Firmware Change Detected telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Check approved maintenance records",
+        "check": "Verify change request, vendor case, maintenance window, engineer identity and signed/approved firmware package.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed PLC Firmware Change Detected telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Compare against trusted baseline",
+        "check": "Use the plant's approved asset inventory and configuration backup to compare version/configuration metadata without changing the running device.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed PLC Firmware Change Detected telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Review management-plane activity",
+        "check": "Correlate controller management sessions, engineering workstation logons, file access and network connections around the change.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed PLC Firmware Change Detected telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for PLC Firmware Change Detected: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for PLC Firmware Change Detected: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for PLC Firmware Change Detected: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for PLC Firmware Change Detected: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for PLC Firmware Change Detected: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for PLC Firmware Change Detected: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: PLC Firmware Change Detected was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to PLC Firmware Change Detected on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: PLC Firmware Change Detected was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for PLC Firmware Change Detected was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"PLC Firmware Change Detected\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"PLC Firmware Change Detected\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 154,
+    "name": "Unauthorized SCADA Configuration Change",
+    "category": "OT Security",
+    "overview": "Investigate Unauthorized SCADA Configuration Change using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Validate the firmware/configuration event",
+        "check": "Capture device vendor/model, asset ID, old/new version or configuration checksum, timestamp, initiating workstation and event source.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized SCADA Configuration Change telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Check approved maintenance records",
+        "check": "Verify change request, vendor case, maintenance window, engineer identity and signed/approved firmware package.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized SCADA Configuration Change telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Compare against trusted baseline",
+        "check": "Use the plant's approved asset inventory and configuration backup to compare version/configuration metadata without changing the running device.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized SCADA Configuration Change telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Review management-plane activity",
+        "check": "Correlate controller management sessions, engineering workstation logons, file access and network connections around the change.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized SCADA Configuration Change telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized SCADA Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized SCADA Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized SCADA Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized SCADA Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized SCADA Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized SCADA Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: Unauthorized SCADA Configuration Change was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to Unauthorized SCADA Configuration Change on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: Unauthorized SCADA Configuration Change was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for Unauthorized SCADA Configuration Change was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"Unauthorized SCADA Configuration Change\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"Unauthorized SCADA Configuration Change\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 155,
+    "name": "Suspicious HMI Login",
+    "category": "OT Security",
+    "overview": "Investigate Suspicious HMI Login using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the original access event",
+        "check": "Capture account, source workstation/IP, target HMI/engineering station, authentication result, logon type, timestamp and event identifier.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Suspicious HMI Login telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate account and role",
+        "check": "Confirm named user/service account, assigned OT role, shift/plant ownership, privilege level and account status.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Suspicious HMI Login telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Check remote access path",
+        "check": "Review jump host, VPN, vendor access broker, MFA and session recording where deployed; verify approval and source endpoint.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Suspicious HMI Login telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate workstation activity",
+        "check": "Review EDR/Windows/Linux logs and OT monitoring telemetry for process launches, USB activity, remote tools or controller sessions.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Suspicious HMI Login telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Suspicious HMI Login: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Suspicious HMI Login: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Suspicious HMI Login: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Suspicious HMI Login: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Suspicious HMI Login: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Suspicious HMI Login: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: Suspicious HMI Login was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to Suspicious HMI Login on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: Suspicious HMI Login was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for Suspicious HMI Login was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"Suspicious HMI Login\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"Suspicious HMI Login\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 156,
+    "name": "Unauthorized Engineering Workstation Access",
+    "category": "OT Security",
+    "overview": "Investigate Unauthorized Engineering Workstation Access using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the original access event",
+        "check": "Capture account, source workstation/IP, target HMI/engineering station, authentication result, logon type, timestamp and event identifier.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized Engineering Workstation Access telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate account and role",
+        "check": "Confirm named user/service account, assigned OT role, shift/plant ownership, privilege level and account status.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized Engineering Workstation Access telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Check remote access path",
+        "check": "Review jump host, VPN, vendor access broker, MFA and session recording where deployed; verify approval and source endpoint.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized Engineering Workstation Access telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate workstation activity",
+        "check": "Review EDR/Windows/Linux logs and OT monitoring telemetry for process launches, USB activity, remote tools or controller sessions.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized Engineering Workstation Access telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized Engineering Workstation Access: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized Engineering Workstation Access: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized Engineering Workstation Access: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized Engineering Workstation Access: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized Engineering Workstation Access: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized Engineering Workstation Access: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: Unauthorized Engineering Workstation Access was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to Unauthorized Engineering Workstation Access on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: Unauthorized Engineering Workstation Access was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for Unauthorized Engineering Workstation Access was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"Unauthorized Engineering Workstation Access\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"Unauthorized Engineering Workstation Access\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 157,
+    "name": "Modbus Write Command Anomaly",
+    "category": "OT Security",
+    "overview": "Investigate Modbus Write Command Anomaly using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the passive protocol event",
+        "check": "Capture source/destination assets, protocol, function/service code, register/object/point, operation type, timestamp and sensor confidence.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Modbus Write Command Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate command semantics with OT engineering",
+        "check": "Ask the authorized control engineer whether the observed command is valid for this device and process; do not infer process impact from a function code alone.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Modbus Write Command Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Compare with normal communications baseline",
+        "check": "Check usual peers, polling rate, master/client role, command frequency and time-of-day patterns.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Modbus Write Command Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate process and network context",
+        "check": "Review nearby control commands, protocol errors, asset state telemetry and IT/OT boundary logs using passive monitoring.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Modbus Write Command Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Modbus Write Command Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Modbus Write Command Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Modbus Write Command Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Modbus Write Command Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Modbus Write Command Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Modbus Write Command Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: Modbus Write Command Anomaly was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to Modbus Write Command Anomaly on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: Modbus Write Command Anomaly was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for Modbus Write Command Anomaly was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"Modbus Write Command Anomaly\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"Modbus Write Command Anomaly\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 158,
+    "name": "DNP3 Control Command Anomaly",
+    "category": "OT Security",
+    "overview": "Investigate DNP3 Control Command Anomaly using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the passive protocol event",
+        "check": "Capture source/destination assets, protocol, function/service code, register/object/point, operation type, timestamp and sensor confidence.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed DNP3 Control Command Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate command semantics with OT engineering",
+        "check": "Ask the authorized control engineer whether the observed command is valid for this device and process; do not infer process impact from a function code alone.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed DNP3 Control Command Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Compare with normal communications baseline",
+        "check": "Check usual peers, polling rate, master/client role, command frequency and time-of-day patterns.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed DNP3 Control Command Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate process and network context",
+        "check": "Review nearby control commands, protocol errors, asset state telemetry and IT/OT boundary logs using passive monitoring.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed DNP3 Control Command Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for DNP3 Control Command Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for DNP3 Control Command Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for DNP3 Control Command Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for DNP3 Control Command Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for DNP3 Control Command Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for DNP3 Control Command Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: DNP3 Control Command Anomaly was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to DNP3 Control Command Anomaly on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: DNP3 Control Command Anomaly was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for DNP3 Control Command Anomaly was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"DNP3 Control Command Anomaly\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"DNP3 Control Command Anomaly\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 159,
+    "name": "OPC UA Unauthorized Session",
+    "category": "OT Security",
+    "overview": "Investigate OPC UA Unauthorized Session using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the passive protocol event",
+        "check": "Capture source/destination assets, protocol, function/service code, register/object/point, operation type, timestamp and sensor confidence.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OPC UA Unauthorized Session telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate command semantics with OT engineering",
+        "check": "Ask the authorized control engineer whether the observed command is valid for this device and process; do not infer process impact from a function code alone.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OPC UA Unauthorized Session telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Compare with normal communications baseline",
+        "check": "Check usual peers, polling rate, master/client role, command frequency and time-of-day patterns.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OPC UA Unauthorized Session telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate process and network context",
+        "check": "Review nearby control commands, protocol errors, asset state telemetry and IT/OT boundary logs using passive monitoring.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OPC UA Unauthorized Session telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OPC UA Unauthorized Session: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OPC UA Unauthorized Session: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OPC UA Unauthorized Session: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OPC UA Unauthorized Session: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OPC UA Unauthorized Session: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OPC UA Unauthorized Session: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: OPC UA Unauthorized Session was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to OPC UA Unauthorized Session on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: OPC UA Unauthorized Session was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for OPC UA Unauthorized Session was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"OPC UA Unauthorized Session\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"OPC UA Unauthorized Session\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 160,
+    "name": "EtherNet/IP Configuration Change",
+    "category": "OT Security",
+    "overview": "Investigate EtherNet/IP Configuration Change using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Validate the firmware/configuration event",
+        "check": "Capture device vendor/model, asset ID, old/new version or configuration checksum, timestamp, initiating workstation and event source.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed EtherNet/IP Configuration Change telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Check approved maintenance records",
+        "check": "Verify change request, vendor case, maintenance window, engineer identity and signed/approved firmware package.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed EtherNet/IP Configuration Change telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Compare against trusted baseline",
+        "check": "Use the plant's approved asset inventory and configuration backup to compare version/configuration metadata without changing the running device.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed EtherNet/IP Configuration Change telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Review management-plane activity",
+        "check": "Correlate controller management sessions, engineering workstation logons, file access and network connections around the change.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed EtherNet/IP Configuration Change telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for EtherNet/IP Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for EtherNet/IP Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for EtherNet/IP Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for EtherNet/IP Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for EtherNet/IP Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for EtherNet/IP Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: EtherNet/IP Configuration Change was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to EtherNet/IP Configuration Change on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: EtherNet/IP Configuration Change was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for EtherNet/IP Configuration Change was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"EtherNet/IP Configuration Change\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"EtherNet/IP Configuration Change\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 161,
+    "name": "Unauthorized IT-to-OT Connection",
+    "category": "OT Security",
+    "overview": "Investigate Unauthorized IT-to-OT Connection using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the connection or policy event",
+        "check": "Capture source/destination zones, IPs, ports, protocol, action, firewall rule ID, timestamp and initiating identity if available.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized IT-to-OT Connection telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate zone and asset ownership",
+        "check": "Map endpoints to the approved OT asset inventory, Purdue/zone model, criticality and permitted communication matrix.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized IT-to-OT Connection telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Check change authorization",
+        "check": "Review change ticket, rule owner, approval, deployment timestamp and rollback record.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized IT-to-OT Connection telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate traffic passively",
+        "check": "Use existing firewall, flow and OT network sensor logs to determine whether a connection was established and what assets/protocols were involved.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized IT-to-OT Connection telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized IT-to-OT Connection: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized IT-to-OT Connection: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized IT-to-OT Connection: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized IT-to-OT Connection: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized IT-to-OT Connection: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized IT-to-OT Connection: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: Unauthorized IT-to-OT Connection was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to Unauthorized IT-to-OT Connection on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: Unauthorized IT-to-OT Connection was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for Unauthorized IT-to-OT Connection was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"Unauthorized IT-to-OT Connection\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"Unauthorized IT-to-OT Connection\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 162,
+    "name": "OT Firewall Rule Modified",
+    "category": "OT Security",
+    "overview": "Investigate OT Firewall Rule Modified using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the connection or policy event",
+        "check": "Capture source/destination zones, IPs, ports, protocol, action, firewall rule ID, timestamp and initiating identity if available.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Firewall Rule Modified telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate zone and asset ownership",
+        "check": "Map endpoints to the approved OT asset inventory, Purdue/zone model, criticality and permitted communication matrix.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Firewall Rule Modified telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Check change authorization",
+        "check": "Review change ticket, rule owner, approval, deployment timestamp and rollback record.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Firewall Rule Modified telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate traffic passively",
+        "check": "Use existing firewall, flow and OT network sensor logs to determine whether a connection was established and what assets/protocols were involved.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Firewall Rule Modified telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Firewall Rule Modified: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Firewall Rule Modified: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Firewall Rule Modified: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Firewall Rule Modified: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Firewall Rule Modified: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Firewall Rule Modified: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: OT Firewall Rule Modified was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to OT Firewall Rule Modified on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: OT Firewall Rule Modified was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for OT Firewall Rule Modified was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"OT Firewall Rule Modified\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"OT Firewall Rule Modified\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 163,
+    "name": "Unexpected Remote Vendor Access",
+    "category": "OT Security",
+    "overview": "Investigate Unexpected Remote Vendor Access using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the original access event",
+        "check": "Capture account, source workstation/IP, target HMI/engineering station, authentication result, logon type, timestamp and event identifier.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unexpected Remote Vendor Access telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate account and role",
+        "check": "Confirm named user/service account, assigned OT role, shift/plant ownership, privilege level and account status.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unexpected Remote Vendor Access telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Check remote access path",
+        "check": "Review jump host, VPN, vendor access broker, MFA and session recording where deployed; verify approval and source endpoint.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unexpected Remote Vendor Access telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate workstation activity",
+        "check": "Review EDR/Windows/Linux logs and OT monitoring telemetry for process launches, USB activity, remote tools or controller sessions.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unexpected Remote Vendor Access telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unexpected Remote Vendor Access: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unexpected Remote Vendor Access: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unexpected Remote Vendor Access: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unexpected Remote Vendor Access: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unexpected Remote Vendor Access: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unexpected Remote Vendor Access: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: Unexpected Remote Vendor Access was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to Unexpected Remote Vendor Access on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: Unexpected Remote Vendor Access was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for Unexpected Remote Vendor Access was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"Unexpected Remote Vendor Access\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"Unexpected Remote Vendor Access\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 164,
+    "name": "OT Asset Discovery Scan",
+    "category": "OT Security",
+    "overview": "Investigate OT Asset Discovery Scan using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Validate the sensor observation",
+        "check": "Capture first-seen time, MAC/IP, vendor/OUI, protocol fingerprints, switch port or sensor location and confidence.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Asset Discovery Scan telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Compare with asset inventory",
+        "check": "Check approved CMDB/OT asset list, DHCP/IPAM, switch tables and maintenance/vendor records.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Asset Discovery Scan telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Assess network placement",
+        "check": "Determine zone, conduit, criticality, permitted communications and whether the asset is connected to a safety or control segment.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Asset Discovery Scan telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Review observed communications",
+        "check": "Use passive packet metadata to identify peers, protocols, service roles and whether the asset initiated unexpected sessions.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Asset Discovery Scan telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Asset Discovery Scan: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Asset Discovery Scan: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Asset Discovery Scan: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Asset Discovery Scan: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Asset Discovery Scan: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Asset Discovery Scan: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: OT Asset Discovery Scan was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to OT Asset Discovery Scan on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: OT Asset Discovery Scan was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for OT Asset Discovery Scan was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"OT Asset Discovery Scan\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"OT Asset Discovery Scan\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 165,
+    "name": "New or Unknown OT Device Detected",
+    "category": "OT Security",
+    "overview": "Investigate New or Unknown OT Device Detected using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the connection or policy event",
+        "check": "Capture source/destination zones, IPs, ports, protocol, action, firewall rule ID, timestamp and initiating identity if available.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed New or Unknown OT Device Detected telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate zone and asset ownership",
+        "check": "Map endpoints to the approved OT asset inventory, Purdue/zone model, criticality and permitted communication matrix.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed New or Unknown OT Device Detected telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Check change authorization",
+        "check": "Review change ticket, rule owner, approval, deployment timestamp and rollback record.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed New or Unknown OT Device Detected telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate traffic passively",
+        "check": "Use existing firewall, flow and OT network sensor logs to determine whether a connection was established and what assets/protocols were involved.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed New or Unknown OT Device Detected telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for New or Unknown OT Device Detected: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for New or Unknown OT Device Detected: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for New or Unknown OT Device Detected: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for New or Unknown OT Device Detected: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for New or Unknown OT Device Detected: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for New or Unknown OT Device Detected: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: New or Unknown OT Device Detected was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to New or Unknown OT Device Detected on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: New or Unknown OT Device Detected was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for New or Unknown OT Device Detected was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"New or Unknown OT Device Detected\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"New or Unknown OT Device Detected\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 166,
+    "name": "Critical OT Asset Communication Lost",
+    "category": "OT Security",
+    "overview": "Investigate Critical OT Asset Communication Lost using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Verify the alert against source telemetry",
+        "check": "Capture affected asset, last-seen/first-seen timestamps, packet counts, latency/loss, sensor health and relevant network path.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Critical OT Asset Communication Lost telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Check process and maintenance context",
+        "check": "Confirm whether a planned shutdown, controller restart, switch maintenance, network change or process transition explains the observation.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Critical OT Asset Communication Lost telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Correlate infrastructure health",
+        "check": "Review switch/firewall interface errors, routing changes, power/UPS alarms and OT monitoring sensor health.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Critical OT Asset Communication Lost telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Assess operational impact with the plant team",
+        "check": "Use approved process/asset monitoring and operator confirmation; do not make control changes based only on a security alert.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Critical OT Asset Communication Lost telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Critical OT Asset Communication Lost: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Critical OT Asset Communication Lost: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Critical OT Asset Communication Lost: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Critical OT Asset Communication Lost: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Critical OT Asset Communication Lost: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Critical OT Asset Communication Lost: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: Critical OT Asset Communication Lost was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to Critical OT Asset Communication Lost on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: Critical OT Asset Communication Lost was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for Critical OT Asset Communication Lost was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"Critical OT Asset Communication Lost\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"Critical OT Asset Communication Lost\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 167,
+    "name": "OT Network Traffic Spike",
+    "category": "OT Security",
+    "overview": "Investigate OT Network Traffic Spike using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Verify the alert against source telemetry",
+        "check": "Capture affected asset, last-seen/first-seen timestamps, packet counts, latency/loss, sensor health and relevant network path.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Network Traffic Spike telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Check process and maintenance context",
+        "check": "Confirm whether a planned shutdown, controller restart, switch maintenance, network change or process transition explains the observation.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Network Traffic Spike telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Correlate infrastructure health",
+        "check": "Review switch/firewall interface errors, routing changes, power/UPS alarms and OT monitoring sensor health.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Network Traffic Spike telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Assess operational impact with the plant team",
+        "check": "Use approved process/asset monitoring and operator confirmation; do not make control changes based only on a security alert.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Network Traffic Spike telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Network Traffic Spike: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Network Traffic Spike: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Network Traffic Spike: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Network Traffic Spike: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Network Traffic Spike: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Network Traffic Spike: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: OT Network Traffic Spike was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to OT Network Traffic Spike on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: OT Network Traffic Spike was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for OT Network Traffic Spike was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"OT Network Traffic Spike\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"OT Network Traffic Spike\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 168,
+    "name": "Industrial Protocol Function-Code Anomaly",
+    "category": "OT Security",
+    "overview": "Investigate Industrial Protocol Function-Code Anomaly using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the passive protocol event",
+        "check": "Capture source/destination assets, protocol, function/service code, register/object/point, operation type, timestamp and sensor confidence.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Industrial Protocol Function-Code Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate command semantics with OT engineering",
+        "check": "Ask the authorized control engineer whether the observed command is valid for this device and process; do not infer process impact from a function code alone.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Industrial Protocol Function-Code Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Compare with normal communications baseline",
+        "check": "Check usual peers, polling rate, master/client role, command frequency and time-of-day patterns.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Industrial Protocol Function-Code Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate process and network context",
+        "check": "Review nearby control commands, protocol errors, asset state telemetry and IT/OT boundary logs using passive monitoring.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Industrial Protocol Function-Code Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Industrial Protocol Function-Code Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Industrial Protocol Function-Code Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Industrial Protocol Function-Code Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Industrial Protocol Function-Code Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Industrial Protocol Function-Code Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Industrial Protocol Function-Code Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: Industrial Protocol Function-Code Anomaly was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to Industrial Protocol Function-Code Anomaly on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: Industrial Protocol Function-Code Anomaly was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for Industrial Protocol Function-Code Anomaly was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"Industrial Protocol Function-Code Anomaly\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"Industrial Protocol Function-Code Anomaly\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 169,
+    "name": "Safety Instrumented System Configuration Change",
+    "category": "OT Security",
+    "overview": "Investigate Safety Instrumented System Configuration Change using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Validate the safety-system event",
+        "check": "Capture SIS/Safety PLC asset ID, engineering station, event timestamp, change type, mode/state and available audit evidence.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Safety Instrumented System Configuration Change telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Escalate to the authorized safety owner",
+        "check": "Follow the site's safety and incident escalation procedures immediately; do not independently change safety logic or operating state.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Safety Instrumented System Configuration Change telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Verify formal authorization",
+        "check": "Check approved management-of-change records, safety lifecycle documentation, maintenance window and authorized personnel.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Safety Instrumented System Configuration Change telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Preserve evidence safely",
+        "check": "Collect existing logs, version/checksum records and passive telemetry using approved procedures without disrupting the safety system.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Safety Instrumented System Configuration Change telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Safety Instrumented System Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Safety Instrumented System Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Safety Instrumented System Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Safety Instrumented System Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Safety Instrumented System Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Safety Instrumented System Configuration Change: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: Safety Instrumented System Configuration Change was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to Safety Instrumented System Configuration Change on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: Safety Instrumented System Configuration Change was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for Safety Instrumented System Configuration Change was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"Safety Instrumented System Configuration Change\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"Safety Instrumented System Configuration Change\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 170,
+    "name": "OT Backup or Configuration Export Anomaly",
+    "category": "OT Security",
+    "overview": "Investigate OT Backup or Configuration Export Anomaly using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the export or backup event",
+        "check": "Capture actor, engineering workstation, target controller/project, file name/path, size, destination, timestamp and transfer method.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Backup or Configuration Export Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate approved backup process",
+        "check": "Confirm scheduled backup job, repository, ticket, owner and whether the destination is an approved controlled store.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Backup or Configuration Export Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Review data handling and destination",
+        "check": "Check access permissions, encryption, removable media or external destination policy and whether sensitive plant configurations were exposed.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Backup or Configuration Export Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate account and endpoint telemetry",
+        "check": "Review sign-in, file creation, archive tools, USB events and network transfer metadata on the source workstation.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Backup or Configuration Export Anomaly telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Backup or Configuration Export Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Backup or Configuration Export Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Backup or Configuration Export Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Backup or Configuration Export Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Backup or Configuration Export Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Backup or Configuration Export Anomaly: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: OT Backup or Configuration Export Anomaly was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to OT Backup or Configuration Export Anomaly on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: OT Backup or Configuration Export Anomaly was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for OT Backup or Configuration Export Anomaly was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"OT Backup or Configuration Export Anomaly\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"OT Backup or Configuration Export Anomaly\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 171,
+    "name": "OT Authentication Failure Spike",
+    "category": "OT Security",
+    "overview": "Investigate OT Authentication Failure Spike using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the original access event",
+        "check": "Capture account, source workstation/IP, target HMI/engineering station, authentication result, logon type, timestamp and event identifier.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Authentication Failure Spike telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate account and role",
+        "check": "Confirm named user/service account, assigned OT role, shift/plant ownership, privilege level and account status.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Authentication Failure Spike telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Check remote access path",
+        "check": "Review jump host, VPN, vendor access broker, MFA and session recording where deployed; verify approval and source endpoint.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Authentication Failure Spike telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate workstation activity",
+        "check": "Review EDR/Windows/Linux logs and OT monitoring telemetry for process launches, USB activity, remote tools or controller sessions.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Authentication Failure Spike telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Authentication Failure Spike: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Authentication Failure Spike: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Authentication Failure Spike: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Authentication Failure Spike: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Authentication Failure Spike: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Authentication Failure Spike: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: OT Authentication Failure Spike was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to OT Authentication Failure Spike on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: OT Authentication Failure Spike was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for OT Authentication Failure Spike was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"OT Authentication Failure Spike\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"OT Authentication Failure Spike\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 172,
+    "name": "Unauthorized USB Activity on Engineering Workstation",
+    "category": "OT Security",
+    "overview": "Investigate Unauthorized USB Activity on Engineering Workstation using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the connection or policy event",
+        "check": "Capture source/destination zones, IPs, ports, protocol, action, firewall rule ID, timestamp and initiating identity if available.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized USB Activity on Engineering Workstation telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate zone and asset ownership",
+        "check": "Map endpoints to the approved OT asset inventory, Purdue/zone model, criticality and permitted communication matrix.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized USB Activity on Engineering Workstation telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Check change authorization",
+        "check": "Review change ticket, rule owner, approval, deployment timestamp and rollback record.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized USB Activity on Engineering Workstation telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate traffic passively",
+        "check": "Use existing firewall, flow and OT network sensor logs to determine whether a connection was established and what assets/protocols were involved.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unauthorized USB Activity on Engineering Workstation telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized USB Activity on Engineering Workstation: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized USB Activity on Engineering Workstation: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized USB Activity on Engineering Workstation: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized USB Activity on Engineering Workstation: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized USB Activity on Engineering Workstation: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unauthorized USB Activity on Engineering Workstation: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: Unauthorized USB Activity on Engineering Workstation was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to Unauthorized USB Activity on Engineering Workstation on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: Unauthorized USB Activity on Engineering Workstation was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for Unauthorized USB Activity on Engineering Workstation was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"Unauthorized USB Activity on Engineering Workstation\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"Unauthorized USB Activity on Engineering Workstation\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 173,
+    "name": "OT Antivirus or Security Monitoring Disabled",
+    "category": "OT Security",
+    "overview": "Investigate OT Antivirus or Security Monitoring Disabled using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Verify the monitoring-health alert",
+        "check": "Capture sensor/agent ID, monitored zone/assets, last-seen timestamp, health state, event gap and alert source.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Antivirus or Security Monitoring Disabled telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Check maintenance and platform health",
+        "check": "Review approved maintenance, sensor updates, resource/connection health, credentials, API status and upstream switch/SPAN/TAP health.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Antivirus or Security Monitoring Disabled telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Measure visibility impact",
+        "check": "Identify assets/protocols and the period for which visibility may be reduced; determine which detections are affected.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Antivirus or Security Monitoring Disabled telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Validate recovery without probing controllers",
+        "check": "Confirm the sensor resumes receiving expected passive telemetry and records correct timestamps; use approved platform health checks.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Antivirus or Security Monitoring Disabled telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Antivirus or Security Monitoring Disabled: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Antivirus or Security Monitoring Disabled: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Antivirus or Security Monitoring Disabled: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Antivirus or Security Monitoring Disabled: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Antivirus or Security Monitoring Disabled: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Antivirus or Security Monitoring Disabled: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: OT Antivirus or Security Monitoring Disabled was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to OT Antivirus or Security Monitoring Disabled on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: OT Antivirus or Security Monitoring Disabled was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for OT Antivirus or Security Monitoring Disabled was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"OT Antivirus or Security Monitoring Disabled\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"OT Antivirus or Security Monitoring Disabled\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 174,
+    "name": "OT Network Segmentation Violation",
+    "category": "OT Security",
+    "overview": "Investigate OT Network Segmentation Violation using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the connection or policy event",
+        "check": "Capture source/destination zones, IPs, ports, protocol, action, firewall rule ID, timestamp and initiating identity if available.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Network Segmentation Violation telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate zone and asset ownership",
+        "check": "Map endpoints to the approved OT asset inventory, Purdue/zone model, criticality and permitted communication matrix.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Network Segmentation Violation telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Check change authorization",
+        "check": "Review change ticket, rule owner, approval, deployment timestamp and rollback record.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Network Segmentation Violation telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate traffic passively",
+        "check": "Use existing firewall, flow and OT network sensor logs to determine whether a connection was established and what assets/protocols were involved.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed OT Network Segmentation Violation telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Network Segmentation Violation: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Network Segmentation Violation: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Network Segmentation Violation: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Network Segmentation Violation: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Network Segmentation Violation: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for OT Network Segmentation Violation: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: OT Network Segmentation Violation was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to OT Network Segmentation Violation on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: OT Network Segmentation Violation was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for OT Network Segmentation Violation was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"OT Network Segmentation Violation\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"OT Network Segmentation Violation\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
+  },
+  {
+    "id": 175,
+    "name": "Unusual Industrial Controller Communication",
+    "category": "OT Security",
+    "overview": "Investigate Unusual Industrial Controller Communication using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
+    "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
+    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "steps": [
+      {
+        "n": 1,
+        "title": "Inspect the passive protocol event",
+        "check": "Capture source/destination assets, protocol, function/service code, register/object/point, operation type, timestamp and sensor confidence.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unusual Industrial Controller Communication telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 2,
+        "title": "Validate command semantics with OT engineering",
+        "check": "Ask the authorized control engineer whether the observed command is valid for this device and process; do not infer process impact from a function code alone.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unusual Industrial Controller Communication telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 3,
+        "title": "Compare with normal communications baseline",
+        "check": "Check usual peers, polling rate, master/client role, command frequency and time-of-day patterns.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unusual Industrial Controller Communication telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 4,
+        "title": "Correlate process and network context",
+        "check": "Review nearby control commands, protocol errors, asset state telemetry and IT/OT boundary logs using passive monitoring.",
+        "fields": "Timestamp; asset ID/hostname; source and destination; protocol/event type; actor/workstation; operation/result; sensor/event ID; change ticket or baseline reference if available.",
+        "analysis": "Reviewed Unusual Industrial Controller Communication telemetry for [asset/zone] during [time window]. Observed [specific event, command, version or communication evidence]. Authorization/context: [validated/not validated/pending]. Operational impact: [confirmed/not observed/unknown]."
+      },
+      {
+        "n": 5,
+        "title": "Correlate adjacent OT telemetry",
+        "check": "Search existing passive OT sensor, firewall, jump-host, identity and endpoint logs for the same asset, account and time window. Do not initiate active scans on production OT.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unusual Industrial Controller Communication: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 6,
+        "title": "Assess scope and process impact",
+        "check": "Identify related assets, zones, protocol peers and any operator-reported impact. Ask the OT owner to assess process/safety significance.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unusual Industrial Controller Communication: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 7,
+        "title": "Check for related indicators",
+        "check": "Look for unapproved peers, unusual commands, repeated attempts, account misuse, unexpected configuration changes or related detections in available telemetry.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unusual Industrial Controller Communication: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 8,
+        "title": "Determine evidence confidence",
+        "check": "Separate observed facts from hypotheses; note sensor coverage, time synchronization, packet visibility and any missing logs.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unusual Industrial Controller Communication: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 9,
+        "title": "Classify and document",
+        "check": "Choose Benign Positive, True Positive, False Positive or Undetermined based on evidence. Record event IDs, timestamps, assets, source references and owner validation.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unusual Industrial Controller Communication: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      },
+      {
+        "n": 10,
+        "title": "Recommend safe response and closure",
+        "check": "Follow site OT incident response and management-of-change procedures. Coordinate with operations before containment; avoid unapproved controller resets, blocking, scanning or logic changes.",
+        "fields": "Time window; involved OT assets/zones; protocol and communication metadata; related event IDs; owner confirmation; coverage gaps.",
+        "analysis": "Correlation for Unusual Industrial Controller Communication: [related events found/not found] in [sources] during [window]. OT owner assessment: [result/pending]. Confidence and gaps: [evidence-supported summary]."
+      }
+    ],
+    "references": [
+      [
+        "CISA ICS Recommended Practices",
+        "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+      ],
+      [
+        "NIST SP 800-82 Rev. 3: Guide to Operational Technology (OT) Security",
+        "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+      ],
+      [
+        "MITRE ATT&CK for ICS",
+        "https://attack.mitre.org/matrices/ics/"
+      ],
+      [
+        "Microsoft Defender for IoT documentation",
+        "https://learn.microsoft.com/en-us/azure/defender-for-iot/"
+      ]
+    ],
+    "classifications": {
+      "Benign Positive": {
+        "recommendation": "Confirm with the authorized OT owner and approved maintenance/change record. Document the exact asset, time window and observed event; do not tune away safety-relevant telemetry without formal review.",
+        "closure": "Benign Positive: Unusual Industrial Controller Communication was validated as expected based on [approved change/owner confirmation/baseline]. Assets and window: [details]. Passive evidence: [sensor/event IDs]. No unapproved activity was identified in the reviewed scope."
+      },
+      "True Positive": {
+        "recommendation": "Escalate through the site's OT incident response and safety/operations procedures. Coordinate any containment with plant operations; preserve passive evidence and avoid unapproved changes to live controllers or safety systems.",
+        "closure": "True Positive: Evidence supports unauthorized or anomalous OT activity related to Unusual Industrial Controller Communication on [asset/zone]. Evidence: [timestamps/events/protocol metadata]. OT owner assessment: [impact]. Actions coordinated with operations: [actions]. Follow-up: [owner/status]."
+      },
+      "False Positive": {
+        "recommendation": "Validate sensor parsing, asset mapping, baseline, duplicate events or rule logic. Propose narrowly scoped tuning through change control and ensure safety-relevant activity remains visible.",
+        "closure": "False Positive: Unusual Industrial Controller Communication was not supported after validating [sensor data/asset mapping/protocol context]. Cause: [specific reason]. Evidence: [event IDs and time window]. Tuning/change request: [details or none]."
+      },
+      "Undetermined": {
+        "recommendation": "Retain or escalate the case according to site policy. Request missing passive telemetry, engineering-owner validation or maintenance records. Record visibility gaps and avoid disruptive testing to resolve uncertainty.",
+        "closure": "Undetermined: Evidence for Unusual Industrial Controller Communication was insufficient to confirm or refute the activity. Missing evidence/visibility: [details]. Assets/window: [details]. Next safe action and owner: [details]."
+      }
+    },
+    "queries": [
+      {
+        "tool": "Microsoft Sentinel",
+        "language": "KQL (schema-dependent)",
+        "purpose": "Investigation starter",
+        "query": "// OT alert investigation starter; replace the placeholder table/fields with your connector schema.\n// Use only telemetry already collected by your OT monitoring platform.\nlet lookback = 24h;\nCommonSecurityLog\n| where TimeGenerated > ago(lookback)\n| where DeviceVendor has_any (\"OT\", \"Industrial\") or DeviceProduct has_any (\"OT\", \"ICS\")\n| project TimeGenerated, DeviceVendor, DeviceProduct, DeviceEventClassID,\n          Activity, SourceIP, DestinationIP, DestinationPort, Protocol, Message\n| order by TimeGenerated desc",
+        "note": "Illustrative only: CommonSecurityLog field names and vendor/product values depend on the connector/CEF mapping. Many OT sensors use custom tables. This is not a detection rule for this alert until event-specific filters are added and tested."
+      },
+      {
+        "tool": "Splunk",
+        "language": "SPL",
+        "purpose": "Investigation starter",
+        "query": "index=<your_ot_index> earliest=-24h\n| search (src_ip=* OR src=* OR dest_ip=* OR dest=*)\n| table _time host sourcetype src src_ip dest dest_ip dest_port protocol action signature message\n| sort - _time",
+        "note": "Replace index and field names with your OT sensor/forwarder mapping. Add protocol/function-code/asset filters from your alert. Do not run active discovery scans on OT networks."
+      },
+      {
+        "tool": "IBM QRadar",
+        "language": "AQL",
+        "purpose": "Investigation starter",
+        "query": "SELECT starttime, LOGSOURCENAME(logsourceid) AS log_source,\n       sourceip, destinationip, destinationport,\n       QIDNAME(qid) AS event_name, magnitude\nFROM events\nWHERE starttime > NOW() - 24 HOURS\nORDER BY starttime DESC",
+        "note": "Generic recent event pivot. Add the relevant OT log source, QID/custom event properties and protocol fields based on your DSM. This is not a validated alert-specific detection."
+      },
+      {
+        "tool": "Microsoft Defender for IoT",
+        "language": "Portal investigation",
+        "purpose": "Product-specific workflow",
+        "query": "Use the Defender for IoT portal's alert/device pages to pivot on:\nAlert: \"Unusual Industrial Controller Communication\"\nCapture: alert timestamp, sensor/site, device identity, protocol/activity, source/destination, severity, and related alerts.\nValidate the observed behaviour against the site's OT asset inventory and approved communication baseline.",
+        "note": "Portal workflow guidance, not a query language. Exact fields and features depend on deployment/version and configured sensors."
+      },
+      {
+        "tool": "Dragos / Nozomi / Claroty",
+        "language": "Product-specific workflow",
+        "purpose": "Vendor-neutral pivot guidance",
+        "query": "Search the platform's alert/asset/communications views for \"Unusual Industrial Controller Communication\" and pivot on:\nasset ID, protocol, peer devices, observed command/activity, timestamp, zone, baseline deviation, and related alerts.\nUse passive telemetry and approved exports; confirm interpretations with the OT asset owner.",
+        "note": "These platforms use different query and investigation interfaces. This is not executable syntax; follow the deployed product's official documentation."
+      },
+      {
+        "tool": "Generic OT sensor / packet metadata",
+        "language": "Filter guidance",
+        "purpose": "Passive investigation",
+        "query": "Filter existing passive sensor records for:\ntime range = [alert window]\nasset/source/destination = [observed asset IDs or IPs]\nprotocol/activity = [alert-specific protocol or event]\noperation/command = [observed function/service code, if available]\nCompare with approved baseline and engineering/maintenance records.",
+        "note": "Populate from available passive records only. Avoid packet injection, active scanning, controller writes or tests against live production/safety systems without formal site authorization."
+      }
+    ]
   }
 ];

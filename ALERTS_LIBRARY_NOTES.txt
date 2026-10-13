@@ -11,3 +11,8 @@ IMPORTANT QUERY VALIDATION NOTES
 - CrowdStrike and SentinelOne entries intentionally provide query/pivot guidance rather than fabricated executable syntax.
 - Validate product version, schema, permissions, logging coverage and time zone before production use. Replace placeholders with evidence. Never claim a finding without logs.
 - Official references are general vendor documentation relevant to the category; individual alert coverage may require additional vendor-specific references.
+
+OT SECURITY ADDITION
+- Added 25 OT Security playbooks (IDs 151-175) with OT-specific investigation steps, passive telemetry guidance, asset/zone context, safe response notes, classification templates and OT references.
+- OT query content is deliberately labelled as schema-dependent investigation starters or product workflow guidance; it is not represented as production-validated detection logic.
+- OT investigations must prioritize passive monitoring, approved change/maintenance records, OT owner validation and site safety/incident procedures. Do not actively scan, send control commands, modify PLC logic, or change safety controllers without formal authorization.
