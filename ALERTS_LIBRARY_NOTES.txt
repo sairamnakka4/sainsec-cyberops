@@ -16,3 +16,16 @@ OT SECURITY ADDITION
 - Added 25 OT Security playbooks (IDs 151-175) with OT-specific investigation steps, passive telemetry guidance, asset/zone context, safe response notes, classification templates and OT references.
 - OT query content is deliberately labelled as schema-dependent investigation starters or product workflow guidance; it is not represented as production-validated detection logic.
 - OT investigations must prioritize passive monitoring, approved change/maintenance records, OT owner validation and site safety/incident procedures. Do not actively scan, send control commands, modify PLC logic, or change safety controllers without formal authorization.
+
+ALERT LIBRARY REFINEMENT
+- Added alert-specific response guidance to every alert record.
+- Reworked each step's SAMPLE ANALYSIS to match the check and evidence type; templates require analyst-supplied observed values and do not assert unverified findings.
+- Added contextual external OSINT/reference links to relevant investigation steps (e.g., VirusTotal, AbuseIPDB, URLhaus, MalwareBazaar, urlscan.io, Cisco Talos, GreyNoise, OTX, ICANN Lookup, crt.sh, NVD, CISA KEV, MITRE ATT&CK and MITRE ATT&CK for ICS).
+- Reduced vertical spacing between cards, investigation sections and steps.
+- OSINT tools are external reference points; reputation/community data is not proof. Follow company policies before submitting sensitive indicators or files to third-party services.
+
+CONTEXTUAL INVESTIGATION TOOLS UPDATE
+- Added step-aware external tool recommendations based on alert category, investigation title and analyst action (IP reputation, DNS/URL/email, malware sandbox/hash, vulnerability intelligence, ATT&CK, cloud and OT/ICS references).
+- Added a Quick OSINT Lookup input on applicable investigation steps. Enter an IP, domain/URL, file hash or CVE and select a lookup type to open the matching external search in a new tab.
+- This is a browser-side convenience feature, not an API integration or automated verdict. External public services may log submitted indicators; do not submit confidential files or sensitive identifiers without organizational approval.
+- Tool outputs must be corroborated with internal SIEM/EDR/cloud/OT telemetry. Validate links, field mappings and tool availability before operational use.

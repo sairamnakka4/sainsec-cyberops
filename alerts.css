@@ -11,3 +11,48 @@ body{background:var(--alert-bg);color:var(--alert-text)}
 .alerts-note{border-left:3px solid var(--alert-accent);padding:10px 14px;color:var(--alert-muted);font-size:.9rem;line-height:1.5}
 .alert-results{display:grid;gap:14px;margin-top:20px}.alert-card{border:1px solid var(--alert-border);border-radius:14px;background:var(--alert-card);overflow:hidden}.alert-summary{display:flex;align-items:center;gap:14px;padding:18px;cursor:pointer;list-style:none}.alert-summary::-webkit-details-marker{display:none}.alert-num{color:var(--alert-accent);font-weight:800;font-variant-numeric:tabular-nums}.alert-title-wrap{flex:1}.alert-title{font-weight:750}.alert-meta{color:var(--alert-muted);font-size:.82rem;margin-top:5px}.alert-pill{border:1px solid #236557;color:var(--alert-accent);border-radius:99px;padding:4px 9px;font-size:.75rem}.alert-body{border-top:1px solid var(--alert-border);padding:22px;display:grid;gap:20px}.alert-body h3{margin:0 0 10px;color:var(--alert-accent);font-size:1.08rem}.alert-body p,.alert-body li{line-height:1.6}.muted{color:var(--alert-muted)}.overview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.mini-panel,.step-panel,.classification-panel,.query-panel{background:#09151d;border:1px solid var(--alert-border);border-radius:12px;padding:15px}.mini-panel b,.field-label{display:block;color:var(--alert-accent);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:7px}.investigation-steps{display:grid;gap:10px}.step-panel summary{cursor:pointer;font-weight:700}.step-panel summary span{color:var(--alert-accent);margin-right:8px}.step-content{padding-top:12px}.step-content p{margin:.55em 0}.step-content strong{color:#c4fff0}.reference-list{display:flex;gap:9px;flex-wrap:wrap}.reference-list a{color:var(--alert-accent);text-decoration:underline}.query-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.query-tabs button,.copy-btn{border:1px solid var(--alert-border);background:#10232d;color:var(--alert-text);padding:8px 11px;border-radius:8px;cursor:pointer}.query-tabs button[aria-selected=true]{border-color:var(--alert-accent);color:var(--alert-accent)}.query-code{white-space:pre-wrap;overflow-wrap:anywhere;background:#050b10;color:#d9fff4;border:1px solid #1a3039;border-radius:10px;padding:14px;font: .83rem/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;max-height:380px;overflow:auto}.query-note{color:var(--alert-muted);font-size:.86rem;line-height:1.5}.classifications{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.classification-panel h4{margin:0 0 8px}.classification-panel p{font-size:.9rem}.empty-state{padding:40px;text-align:center;color:var(--alert-muted)}.alerts-footer{text-align:center;border-top:1px solid var(--alert-border);padding:22px;color:var(--alert-muted);font-size:.85rem}
 @media(max-width:760px){.alerts-header{align-items:flex-start;flex-direction:column}.alerts-controls{grid-template-columns:1fr}.overview-grid,.classifications{grid-template-columns:1fr}.alerts-hero{padding:22px}.alert-summary{padding:14px;align-items:flex-start}.alert-pill{display:none}.alert-body{padding:14px}}
+
+/* Refined investigation layout: tighter vertical rhythm and contextual OSINT links */
+.alert-results{gap:8px;margin-top:14px}
+.alert-card{border-radius:12px}
+.alert-body{gap:12px;padding:16px}
+.alert-body>section{margin:0;padding:0}
+.alert-body h3{margin:0 0 7px}
+.overview-grid{gap:8px;margin-top:10px}
+.mini-panel,.step-panel,.classification-panel,.query-panel{padding:11px}
+.investigation-steps{gap:7px}
+.step-content{padding-top:8px}
+.step-content p{margin:.4em 0}
+.classifications{gap:8px}
+.alert-specific-recommendation{margin-top:10px;padding:12px 14px;border:1px solid #236557;border-radius:10px;background:rgba(24,217,177,.045)}
+.alert-specific-recommendation h3{margin-bottom:5px}
+.alert-specific-recommendation p{margin:0;line-height:1.55}
+.osint-links{display:flex;align-items:flex-start;gap:7px;flex-wrap:wrap;margin-top:10px;padding-top:9px;border-top:1px solid var(--alert-border)}
+.osint-links strong{flex-basis:100%;font-size:.8rem;color:var(--alert-accent)}
+.osint-links a{font-size:.8rem;color:var(--alert-accent);border:1px solid #245448;border-radius:7px;padding:5px 7px;text-decoration:none}
+.osint-links a:hover{text-decoration:underline;background:#102b2a}
+.osint-links small{flex-basis:100%;font-size:.76rem;color:var(--alert-muted);line-height:1.4}
+@media(max-width:760px){.alert-body{gap:10px;padding:12px}.mini-panel,.step-panel,.classification-panel,.query-panel{padding:10px}}
+
+
+/* Contextual investigation utilities */
+.osint-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;padding:11px;border:1px solid var(--alert-border);border-radius:10px;background:#08141b}
+.osint-links strong{flex-basis:100%;font-size:.82rem;color:var(--alert-accent)}
+.osint-links a{display:inline-block;padding:6px 9px;border:1px solid #25424b;border-radius:7px;color:#b8f9e9;text-decoration:none;font-size:.78rem}
+.osint-links a:hover{border-color:var(--alert-accent);background:#102a2d}
+.osint-links small,.quick-lookup small{flex-basis:100%;display:block;color:var(--alert-muted);font-size:.75rem;line-height:1.45}
+.quick-lookup{margin-top:10px;padding:11px;border:1px dashed #2b4c55;border-radius:10px;background:#08141b;display:grid;gap:8px}
+.quick-lookup label{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--alert-accent);font-size:.82rem;font-weight:700}
+.ioc-input{flex:1;min-width:180px;background:#0c1b25;border:1px solid var(--alert-border);color:var(--alert-text);border-radius:7px;padding:9px}
+.lookup-buttons{display:flex;flex-wrap:wrap;gap:7px}
+.lookup-btn{background:#10232d;border:1px solid #25424b;color:var(--alert-text);padding:7px 10px;border-radius:7px;cursor:pointer;font-size:.78rem}
+.lookup-btn:hover{border-color:var(--alert-accent);color:var(--alert-accent)}
+/* Keep adjacent investigation steps compact */
+.investigation-steps{gap:7px}
+.step-panel{padding:12px}
+.step-content{padding-top:8px}
+.step-content p{margin:.4em 0}
+.classifications{gap:9px}
+.classification-panel{padding:12px}
+.alert-body{gap:15px}
+.alert-card{margin-bottom:0}
