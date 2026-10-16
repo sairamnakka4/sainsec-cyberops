@@ -248,3 +248,5 @@ body{background:var(--alert-bg);color:var(--alert-text)}
 .event-reference-source li{margin:5px 0;overflow-wrap:anywhere}
 .event-reference-source code{color:#c4fff0;background:#10232d;border:1px solid var(--alert-border);border-radius:4px;padding:1px 4px}
 .event-reference-source small{display:block;color:var(--alert-muted);line-height:1.45}
+
+.load-more-wrap{display:flex;justify-content:center;padding:1.25rem;grid-column:1/-1}.load-more-alerts{background:#10232b;color:#dffefa;border:1px solid #18d9b1;border-radius:8px;padding:.8rem 1.2rem;cursor:pointer;font-weight:600}.load-more-alerts:hover{background:#12343a}
