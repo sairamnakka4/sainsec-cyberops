@@ -66,15 +66,49 @@ body{background:var(--alert-bg);color:var(--alert-text)}
 .query-code{white-space:pre;overflow:auto;max-height:460px}
 
 
-/* Alert-specific analysis guide: scoped to the SOC Alert Library page */
-.analysis-guide-section{margin-top:18px}
+/* Alert library responsive layout: desktop, tablet and mobile */
+.analysis-guide{margin:4px 0 8px}
 .analysis-guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.analysis-guide-card{min-width:0;border:1px solid var(--alert-border);border-radius:10px;padding:13px;background:#0a1720}
-.analysis-guide-card h4{margin:0 0 7px;color:var(--alert-accent);font-size:.94rem;line-height:1.35}
-.analysis-guide-card p{margin:0;line-height:1.6;overflow-wrap:anywhere}
-.analysis-guide-card.red-flags{border-left:3px solid #f0a34a}
-.analysis-guide-card.if-compromise{border-left:3px solid #e45f68}
-.analysis-guide-card.precaution-prevention{border-left:3px solid #18d9b1}
-.analysis-guide-card.evidence-to-collect{border-left:3px solid #6ea8e8}
-.alert-specific-recommendation{margin-top:12px}
-@media(max-width:720px){.analysis-guide-grid{grid-template-columns:1fr}.analysis-guide-card{padding:11px}}
+.guide-panel{min-width:0;padding:13px;border:1px solid var(--alert-border);border-radius:10px;background:#0a1820}
+.guide-panel h4{margin:0 0 7px;color:var(--alert-accent);font-size:.92rem}
+.guide-panel p,.guide-panel ul{margin:0;line-height:1.55;overflow-wrap:anywhere}
+.guide-panel ul{padding-left:20px}
+.alert-body>section{min-width:0}
+.alert-card,.alert-card details,.alert-summary,.alert-title-wrap{min-width:0}
+.alert-title,.alert-meta{overflow-wrap:anywhere}
+.overview-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.classifications{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.query-panel,.query-code,.query-note,.reference-list,.osint-links,.quick-lookup{min-width:0;max-width:100%;box-sizing:border-box}
+.query-tabs,.query-pivot-tabs{display:flex;flex-wrap:wrap;gap:7px}
+.query-tabs button,.query-pivot-tabs button{max-width:100%;overflow-wrap:anywhere}
+.query-code{display:block;white-space:pre;overflow-x:auto;overflow-y:auto;max-width:100%;-webkit-overflow-scrolling:touch}
+.ioc-input{box-sizing:border-box;max-width:100%}
+@media (max-width: 900px){
+ .alert-body{padding:clamp(12px,3vw,22px)}
+ .overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .analysis-guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .query-tabs button,.query-pivot-tabs button{flex:0 1 auto}
+}
+@media (max-width: 600px){
+ .alert-card{border-radius:12px}
+ .alert-summary{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:10px;padding:14px}
+ .alert-pill{grid-column:2;justify-self:start}
+ .alert-title{font-size:.96rem;line-height:1.35}
+ .alert-meta{font-size:.78rem;line-height:1.45}
+ .alert-body{padding:12px;gap:17px}
+ .alert-body h3{font-size:1rem;line-height:1.35}
+ .overview-grid,.analysis-guide-grid,.classifications{grid-template-columns:minmax(0,1fr)}
+ .mini-panel,.guide-panel,.classification-panel{padding:11px}
+ .investigation-steps{gap:8px}
+ .step-panel{padding:10px}
+ .step-panel>summary{line-height:1.4;align-items:flex-start}
+ .step-content{font-size:.9rem;line-height:1.55}
+ .query-tabs button,.query-pivot-tabs button{flex:1 1 100%;text-align:left}
+ .query-code{font-size:.78rem;padding:12px}
+ .reference-list,.osint-links,.lookup-buttons{gap:7px}
+ .osint-links a,.lookup-btn{max-width:100%;overflow-wrap:anywhere}
+ .quick-lookup label{display:grid;grid-template-columns:minmax(0,1fr);align-items:stretch}
+ .ioc-input{width:100%;min-width:0}
+ .lookup-buttons button{flex:1 1 100%}
+ .classification-panel{overflow-wrap:anywhere}
+}

@@ -5,7 +5,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Multiple Failed Logins Followed by Success by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Target user accounts; source IP; sign-in events; authentication result codes; target application; client/device.",
     "steps": [
       {
         "n": 1,
@@ -319,7 +319,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Brute-Force Login Attempt by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Target user accounts; source IP; sign-in events; authentication result codes; target application; client/device.",
     "steps": [
       {
         "n": 1,
@@ -633,7 +633,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Password Spraying Attack by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Target user accounts; source IP; sign-in events; authentication result codes; target application; client/device.",
     "steps": [
       {
         "n": 1,
@@ -947,7 +947,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Unusual Sign-In Location by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User account; source IPs and geolocation; sign-in timestamps; device/client; target application; risk details.",
     "steps": [
       {
         "n": 1,
@@ -1261,7 +1261,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Impossible Travel Sign-In by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User account; source IPs and geolocation; sign-in timestamps; device/client; target application; risk details.",
     "steps": [
       {
         "n": 1,
@@ -1575,7 +1575,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Sign-In from Anonymous IP or VPN by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User account; source IPs and geolocation; sign-in timestamps; device/client; target application; risk details.",
     "steps": [
       {
         "n": 1,
@@ -2052,7 +2052,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Sign-In from Unfamiliar Device by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User account; device ID/name; source IP; sign-in record; device compliance/join state; target application.",
     "steps": [
       {
         "n": 1,
@@ -2366,7 +2366,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Legacy Authentication Attempt by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User account; client app/protocol; source IP/device; target application; authentication result.",
     "steps": [
       {
         "n": 1,
@@ -2680,7 +2680,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate MFA Fatigue or Repeated MFA Pushes by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User account; registered authentication methods; MFA challenge/session; source IP/device; identity policy.",
     "steps": [
       {
         "n": 1,
@@ -2994,7 +2994,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate MFA Disabled for a User by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User account; registered authentication methods; MFA challenge/session; source IP/device; identity policy.",
     "steps": [
       {
         "n": 1,
@@ -3308,7 +3308,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Conditional Access Policy Bypass Attempt by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User account; sign-in event; Conditional Access policy; target application; source IP/device; policy result.",
     "steps": [
       {
         "n": 1,
@@ -3622,7 +3622,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Risky User Sign-In by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Risky user/sign-in; user account; source IP/location; device; risk detections/state; target application.",
     "steps": [
       {
         "n": 1,
@@ -3936,7 +3936,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Risky User Detected by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Risky user/sign-in; user account; source IP/location; device; risk detections/state; target application.",
     "steps": [
       {
         "n": 1,
@@ -4250,7 +4250,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Suspicious OAuth Consent Grant by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User account; enterprise application/service principal; OAuth app ID; consent grant; tenant; source IP.",
     "steps": [
       {
         "n": 1,
@@ -4564,7 +4564,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Unusual Application Sign-In by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User account; enterprise application/service principal; OAuth app ID; consent grant; tenant; source IP.",
     "steps": [
       {
         "n": 1,
@@ -4878,7 +4878,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Dormant Account Reactivation by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User account; sign-in event; account status; source IP/device; target application.",
     "steps": [
       {
         "n": 1,
@@ -5192,7 +5192,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Disabled Account Sign-In Attempt by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User account; sign-in event; account status; source IP/device; target application.",
     "steps": [
       {
         "n": 1,
@@ -5506,7 +5506,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Multiple Accounts Accessed from One IP by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Target user accounts; source IP; sign-in events; authentication result codes; target application; client/device.",
     "steps": [
       {
         "n": 1,
@@ -5983,7 +5983,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Unusual Service Account Authentication by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Service account; source host/IP; target service; authentication protocol; service or workload.",
     "steps": [
       {
         "n": 1,
@@ -6297,7 +6297,7 @@ window.SAINSEC_ALERTS = [
     "category": "Identity & Authentication",
     "overview": "Investigate Authentication from a Tor Exit Node by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User account; source IPs and geolocation; sign-in timestamps; device/client; target application; risk details.",
     "steps": [
       {
         "n": 1,
@@ -6611,7 +6611,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Malware Detection on Endpoint by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; detected file/path/hash; detection name/family; initiating process/user; quarantine/remediation status; related hosts.",
     "steps": [
       {
         "n": 1,
@@ -7056,7 +7056,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Ransomware Behaviour Detected by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Affected endpoint; logged-on user; ransomware process tree; impacted files; file hashes; EDR alert; network connections.",
     "steps": [
       {
         "n": 1,
@@ -7452,7 +7452,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Suspicious PowerShell Execution by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; user; process and parent process; command line/script content; file hash; network connections; EDR process event.",
     "steps": [
       {
         "n": 1,
@@ -7865,7 +7865,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Encoded or Obfuscated PowerShell Command by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; user; process and parent process; command line/script content; file hash; network connections; EDR process event.",
     "steps": [
       {
         "n": 1,
@@ -8278,7 +8278,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Suspicious Command-Line Execution by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; user; process and parent process; command line/script content; file hash; network connections; EDR process event.",
     "steps": [
       {
         "n": 1,
@@ -8674,7 +8674,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Living-off-the-Land Binary Abuse by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; user; process and parent process; command line/script content; file hash; network connections; EDR process event.",
     "steps": [
       {
         "n": 1,
@@ -9070,7 +9070,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Suspicious Script Interpreter Activity by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; user; process and parent process; command line/script content; file hash; network connections; EDR process event.",
     "steps": [
       {
         "n": 1,
@@ -9474,7 +9474,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Credential Dumping Behaviour by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; user/process accessing credential material; parent process; target process; command line; EDR memory/credential-access telemetry.",
     "steps": [
       {
         "n": 1,
@@ -9887,7 +9887,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate LSASS Memory Access Attempt by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; user/process accessing credential material; parent process; target process; command line; EDR memory/credential-access telemetry.",
     "steps": [
       {
         "n": 1,
@@ -10283,7 +10283,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Suspicious Process Injection by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; injecting/loaded process; target process; DLL/file path and hash; signer; parent process; EDR event.",
     "steps": [
       {
         "n": 1,
@@ -10696,7 +10696,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Unusual Parent-Child Process Relationship by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; parent and child process names/paths; command lines; process IDs; user/session; hashes/signatures; related network events.",
     "steps": [
       {
         "n": 1,
@@ -11173,7 +11173,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Suspicious Scheduled Task Creation by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; affected task/registry key/WMI subscription; initiating user/process; command or payload; timestamp; persistence target.",
     "steps": [
       {
         "n": 1,
@@ -11569,7 +11569,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Malicious File Quarantined by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; detected file/path/hash; detection name/family; initiating process/user; quarantine/remediation status; related hosts.",
     "steps": [
       {
         "n": 1,
@@ -12014,7 +12014,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Potentially Unwanted Application Detected by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; detected file/path/hash; detection name/family; initiating process/user; quarantine/remediation status; related hosts.",
     "steps": [
       {
         "n": 1,
@@ -12410,7 +12410,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Suspicious Registry Modification by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; affected task/registry key/WMI subscription; initiating user/process; command or payload; timestamp; persistence target.",
     "steps": [
       {
         "n": 1,
@@ -12806,7 +12806,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Endpoint Security Tool Tampering by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; EDR/AV agent and health state; service/process changes; initiating account/process; last telemetry time; affected sensor/host.",
     "steps": [
       {
         "n": 1,
@@ -13202,7 +13202,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate EDR Agent Disabled or Unhealthy by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; EDR/AV agent and health state; service/process changes; initiating account/process; last telemetry time; affected sensor/host.",
     "steps": [
       {
         "n": 1,
@@ -13598,7 +13598,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Suspicious Remote Execution on Endpoint by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source and destination endpoints; initiating user; remote execution tool/service; process tree; authentication events; network connection.",
     "steps": [
       {
         "n": 1,
@@ -13994,7 +13994,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Unusual Executable from Temporary Directory by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint/host; logged-on user; detected file/process; file path and hash; parent-child process tree; EDR detection/action; related network activity.",
     "steps": [
       {
         "n": 1,
@@ -14439,7 +14439,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Suspicious DLL Side-Loading by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; injecting/loaded process; target process; DLL/file path and hash; signer; parent process; EDR event.",
     "steps": [
       {
         "n": 1,
@@ -14835,7 +14835,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Browser Credential Theft Behaviour by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; user/process accessing credential material; parent process; target process; command line; EDR memory/credential-access telemetry.",
     "steps": [
       {
         "n": 1,
@@ -15248,7 +15248,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Suspicious USB Device Activity by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; logged-on user; USB device ID/vendor/serial; file operations; device-control event; copied files and destination.",
     "steps": [
       {
         "n": 1,
@@ -15652,7 +15652,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Endpoint Connecting to Known Malicious Domain by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; process making DNS/HTTP/TLS connection; queried domain/IP; DNS/proxy/network events; destination reputation; file/process context.",
     "steps": [
       {
         "n": 1,
@@ -16129,7 +16129,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Unusual Outbound Connection from Endpoint by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; initiating process; destination IP/domain/port; connection timestamps/bytes; user; proxy/firewall/EDR network events.",
     "steps": [
       {
         "n": 1,
@@ -16602,7 +16602,7 @@ window.SAINSEC_ALERTS = [
     "category": "Endpoint, Malware & EDR",
     "overview": "Investigate Multiple Malware Detections on One Host by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; detected file/path/hash; detection name/family; initiating process/user; quarantine/remediation status; related hosts.",
     "steps": [
       {
         "n": 1,
@@ -17047,7 +17047,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Connection to Known Malicious IP by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source host/IP; destination IP and port; connection action/bytes; process/user if available; threat-intelligence context.",
     "steps": [
       {
         "n": 1,
@@ -17519,7 +17519,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Connection to Known Malicious Domain by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source host/IP; queried/visited domain and full URL; DNS/proxy events; user/browser/process; HTTP result; reputation context.",
     "steps": [
       {
         "n": 1,
@@ -17991,7 +17991,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate DNS Tunnelling Suspected by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source host/IP; queried domain; DNS record/type and response; query count/timing; resolver; associated process if available.",
     "steps": [
       {
         "n": 1,
@@ -18439,7 +18439,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Suspicious DNS Query Volume by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source host/IP; queried domain; DNS record/type and response; query count/timing; resolver; associated process if available.",
     "steps": [
       {
         "n": 1,
@@ -18887,7 +18887,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Potential Command-and-Control Traffic by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source/destination IPs and ports; protocol; firewall/proxy/flow events; action and bytes; host/user/process context where available.",
     "steps": [
       {
         "n": 1,
@@ -19359,7 +19359,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Repeated Connection to Rare External Destination by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source/destination IPs and ports; protocol; firewall/proxy/flow events; action and bytes; host/user/process context where available.",
     "steps": [
       {
         "n": 1,
@@ -19807,7 +19807,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Port Scanning Activity by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Scanning source host/IP; targeted hosts/IPs and ports; protocol; connection outcomes; firewall/flow events; asset owner.",
     "steps": [
       {
         "n": 1,
@@ -20255,7 +20255,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Internal Network Service Scanning by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Scanning source host/IP; targeted hosts/IPs and ports; protocol; connection outcomes; firewall/flow events; asset owner.",
     "steps": [
       {
         "n": 1,
@@ -20703,7 +20703,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Unusual Outbound Traffic Volume by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source host/user; destination IP/domain/service; transferred bytes; protocol/port; proxy/firewall/flow records; data classification if known.",
     "steps": [
       {
         "n": 1,
@@ -21151,7 +21151,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Potential Data Exfiltration over Network by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source host/user; destination IP/domain/service; transferred bytes; protocol/port; proxy/firewall/flow records; data classification if known.",
     "steps": [
       {
         "n": 1,
@@ -21599,7 +21599,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Firewall Deny Events Spike by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Firewall; source/destination IPs; ports/protocol; deny rule; event counts/timestamps; affected application/asset.",
     "steps": [
       {
         "n": 1,
@@ -22047,7 +22047,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Firewall Rule Modified by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Firewall/device; changed rule ID/name; before/after configuration; administrator; management-plane event; source/destination/ports; change ticket.",
     "steps": [
       {
         "n": 1,
@@ -22495,7 +22495,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Unexpected Inbound Connection by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source/destination IPs; zones; ports/protocol; firewall rule/action; asset criticality; connection result; change/allowlist context.",
     "steps": [
       {
         "n": 1,
@@ -22943,7 +22943,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Suspicious Remote Desktop Traffic by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source/destination IPs and ports; protocol; firewall/proxy/flow events; action and bytes; host/user/process context where available.",
     "steps": [
       {
         "n": 1,
@@ -23391,7 +23391,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Unusual SMB Traffic by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source/destination hosts; user/account; SMB/RDP protocol and port; authentication and share/session events; process context; connection outcomes.",
     "steps": [
       {
         "n": 1,
@@ -23839,7 +23839,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Possible Lateral Movement over Network by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source/destination hosts; user/account; SMB/RDP protocol and port; authentication and share/session events; process context; connection outcomes.",
     "steps": [
       {
         "n": 1,
@@ -24311,7 +24311,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Proxy Access to Newly Registered Domain by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source host/IP; queried/visited domain and full URL; DNS/proxy events; user/browser/process; HTTP result; reputation context.",
     "steps": [
       {
         "n": 1,
@@ -24783,7 +24783,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Access to a Known Phishing Website by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source host/IP; queried/visited domain and full URL; DNS/proxy events; user/browser/process; HTTP result; reputation context.",
     "steps": [
       {
         "n": 1,
@@ -25260,7 +25260,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Traffic to Unapproved External Service by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source/destination IPs; zones; ports/protocol; firewall rule/action; asset criticality; connection result; change/allowlist context.",
     "steps": [
       {
         "n": 1,
@@ -25708,7 +25708,7 @@ window.SAINSEC_ALERTS = [
     "category": "Network, Firewall, DNS & Proxy",
     "overview": "Investigate Suspicious Encrypted Traffic Pattern by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Source/destination endpoints; TLS metadata/certificate/SNI if available; ports; connection timing/volume; proxy/firewall records; process/user context.",
     "steps": [
       {
         "n": 1,
@@ -26156,7 +26156,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate Suspected Phishing Email by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Message ID; sender/recipient; URL and redirect chain; click timestamp; user/device/IP; Safe Links/proxy events; message disposition.",
     "steps": [
       {
         "n": 1,
@@ -26633,7 +26633,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate Malware Attachment Detected by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Message ID; sender/recipient; attachment name/hash/type; detonation/verdict; delivery/quarantine status; user interaction; endpoint events.",
     "steps": [
       {
         "n": 1,
@@ -27074,7 +27074,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate Malicious URL Clicked by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Message ID; sender/recipient; URL and redirect chain; click timestamp; user/device/IP; Safe Links/proxy events; message disposition.",
     "steps": [
       {
         "n": 1,
@@ -27551,7 +27551,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate Business Email Compromise Suspected by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Mailbox/user; sign-in and MFA events; inbox rules/forwarding; sent items; message trace; OAuth grants; source IP/device.",
     "steps": [
       {
         "n": 1,
@@ -28028,7 +28028,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate Email Account Compromise Indicators by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Mailbox/user; sign-in and MFA events; inbox rules/forwarding; sent items; message trace; OAuth grants; source IP/device.",
     "steps": [
       {
         "n": 1,
@@ -28505,7 +28505,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate Suspicious Inbox Rule Created by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Mailbox; rule name/conditions/actions; forwarding destination; creator account/IP; audit event; affected messages.",
     "steps": [
       {
         "n": 1,
@@ -28882,7 +28882,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate External Email Auto-Forwarding Enabled by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Mailbox; rule name/conditions/actions; forwarding destination; creator account/IP; audit event; affected messages.",
     "steps": [
       {
         "n": 1,
@@ -29359,7 +29359,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate Unusual Email Sending Volume by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Mailbox/user; message IDs; recipient domains/counts; send/delete/purge timestamps; mail audit and message trace; sign-in context.",
     "steps": [
       {
         "n": 1,
@@ -29836,7 +29836,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate Email Sent to Unusual External Recipients by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Mailbox/user; message IDs; recipient domains/counts; send/delete/purge timestamps; mail audit and message trace; sign-in context.",
     "steps": [
       {
         "n": 1,
@@ -30313,7 +30313,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate Spoofed Sender or Domain Detected by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Message ID; sender/from/return-path domains; sending IP; SPF/DKIM/DMARC results; headers; recipient; mail gateway verdict.",
     "steps": [
       {
         "n": 1,
@@ -30790,7 +30790,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate DMARC, SPF or DKIM Anomaly by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Message ID; sender/from/return-path domains; sending IP; SPF/DKIM/DMARC results; headers; recipient; mail gateway verdict.",
     "steps": [
       {
         "n": 1,
@@ -31167,7 +31167,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate Suspicious Microsoft 365 OAuth Application by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User/mailbox; application and app ID; permissions/scopes; consent actor/time; sign-in events; audit logs; publisher/verification details.",
     "steps": [
       {
         "n": 1,
@@ -31544,7 +31544,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate Suspicious Teams External Communication by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Teams user; tenant/external tenant; chat/channel participants; message/activity timestamps; external access settings; audit events and URLs.",
     "steps": [
       {
         "n": 1,
@@ -31921,7 +31921,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate Mass Email Deletion or Purge by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Mailbox/user; message IDs; recipient domains/counts; send/delete/purge timestamps; mail audit and message trace; sign-in context.",
     "steps": [
       {
         "n": 1,
@@ -32398,7 +32398,7 @@ window.SAINSEC_ALERTS = [
     "category": "Email, Phishing & Collaboration",
     "overview": "Investigate Phishing Reported by Multiple Users by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Reported message IDs; sender/recipient; subject; URLs and attachment hashes; delivery/action status; affected users; mail-flow trace.",
     "steps": [
       {
         "n": 1,
@@ -32875,7 +32875,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate AWS Root Account Activity by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "AWS account; IAM principal/role; policy/key change; CloudTrail eventName; source IP; session/assumed role; affected permissions.",
     "steps": [
       {
         "n": 1,
@@ -33300,7 +33300,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate AWS Console Sign-In Anomaly by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "AWS account/region; IAM principal or role; API eventName; source IP/user agent; resource ARN; CloudTrail event ID and response.",
     "steps": [
       {
         "n": 1,
@@ -33597,7 +33597,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate AWS IAM Policy Privilege Escalation by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "AWS account; IAM principal/role; policy/key change; CloudTrail eventName; source IP; session/assumed role; affected permissions.",
     "steps": [
       {
         "n": 1,
@@ -33894,7 +33894,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate AWS Access Key Created or Rotated Unexpectedly by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "AWS account; IAM principal/role; policy/key change; CloudTrail eventName; source IP; session/assumed role; affected permissions.",
     "steps": [
       {
         "n": 1,
@@ -34186,7 +34186,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate AWS Security Group Opened to the Internet by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "AWS account/region; security group ID; changed ingress/egress rule; exposed port/CIDR; actor; CloudTrail event and change ticket.",
     "steps": [
       {
         "n": 1,
@@ -34478,7 +34478,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate AWS CloudTrail Logging Disabled by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "AWS account/region; trail/logging configuration; actor/principal; CloudTrail management event; delivery destination and last log timestamp.",
     "steps": [
       {
         "n": 1,
@@ -34770,7 +34770,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate AWS S3 Bucket Made Public by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "AWS account; S3 bucket/object; bucket policy/ACL/public-access settings; principal; CloudTrail event; resource region.",
     "steps": [
       {
         "n": 1,
@@ -35062,7 +35062,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate Suspicious AWS API Activity by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "AWS account/region; IAM principal or role; API eventName; source IP/user agent; resource ARN; CloudTrail event ID and response.",
     "steps": [
       {
         "n": 1,
@@ -35354,7 +35354,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate Azure Privileged Role Assignment by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Azure tenant/subscription; target principal; assigned role and scope; initiating actor; role assignment ID; Activity/Audit log event.",
     "steps": [
       {
         "n": 1,
@@ -35651,7 +35651,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate Azure Service Principal Credential Added by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Tenant; service principal/app ID; credential type and key ID; actor; credential-add event; sign-in activity; affected resources.",
     "steps": [
       {
         "n": 1,
@@ -35988,7 +35988,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate Azure Key Vault Access Anomaly by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Azure tenant/subscription; Key Vault name; caller identity/app ID; operation; source IP; result/status; diagnostic/audit event.",
     "steps": [
       {
         "n": 1,
@@ -36280,7 +36280,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate Azure Activity Log or Diagnostic Logging Disabled by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Subscription/resource; diagnostic setting or Activity Log configuration; actor; destination workspace/storage; change event; telemetry gap.",
     "steps": [
       {
         "n": 1,
@@ -36572,7 +36572,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate Azure Storage Public Access Enabled by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Subscription/storage account/container; public-access setting; actor; configuration change event; resource scope; data exposure context.",
     "steps": [
       {
         "n": 1,
@@ -36864,7 +36864,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate Suspicious Azure Resource Deployment by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Azure tenant/subscription/resource; initiating identity; operation name; source IP; Activity/Audit log event; resource ID and status.",
     "steps": [
       {
         "n": 1,
@@ -37156,7 +37156,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate Google Cloud IAM Role Change by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "GCP project; principal email/service account; methodName; source IP/user agent; resource name; Cloud Audit Logs event and status.",
     "steps": [
       {
         "n": 1,
@@ -37448,7 +37448,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate Google Cloud Service Account Key Created by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "GCP project; service account email; key ID; actor; key creation event; subsequent service-account activity.",
     "steps": [
       {
         "n": 1,
@@ -37745,7 +37745,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate Google Cloud Audit Logging Disabled by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "GCP project; audit log configuration; actor; affected log type/sink; methodName; event timestamp and telemetry gap.",
     "steps": [
       {
         "n": 1,
@@ -38037,7 +38037,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate GCP Storage Bucket Exposed Publicly by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "GCP project; bucket/object; IAM policy/public principal; actor; Cloud Audit Log methodName; resource name and location.",
     "steps": [
       {
         "n": 1,
@@ -38329,7 +38329,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate Unusual Cloud API Activity by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Cloud tenant/account/project; principal; API operation; source IP/user agent; resource ID; audit event; permission and change context.",
     "steps": [
       {
         "n": 1,
@@ -38621,7 +38621,7 @@ window.SAINSEC_ALERTS = [
     "category": "Cloud Security",
     "overview": "Investigate Cloud Workload Access from Unusual Location by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Cloud workload/resource; principal; source IP/geolocation; API or console sign-in event; user agent; resource access and risk context.",
     "steps": [
       {
         "n": 1,
@@ -38913,7 +38913,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate Unexpected Local Administrator Added by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Host/domain; new or modified account; assigned group/role; initiating actor; account-management event ID; approval/change record.",
     "steps": [
       {
         "n": 1,
@@ -39247,7 +39247,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate Domain Admin Group Membership Changed by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User/service account; group name/SID; member added/removed; actor; domain controller; security event ID; approval/change ticket.",
     "steps": [
       {
         "n": 1,
@@ -39724,7 +39724,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate Privileged Group Membership Modified by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User/service account; group name/SID; member added/removed; actor; domain controller; security event ID; approval/change ticket.",
     "steps": [
       {
         "n": 1,
@@ -40201,7 +40201,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate Suspicious Sudo Privilege Usage by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Linux host; user and effective UID; sudo command; TTY/session; authentication logs; process execution; sudoers change if relevant.",
     "steps": [
       {
         "n": 1,
@@ -40535,7 +40535,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate New Windows Service Created by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Host; service/unit/task name; executable/path and arguments; creator account; service manager/audit event; persistence trigger and hash.",
     "steps": [
       {
         "n": 1,
@@ -40869,7 +40869,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate New Linux Systemd Service Created by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Host; service/unit/task name; executable/path and arguments; creator account; service manager/audit event; persistence trigger and hash.",
     "steps": [
       {
         "n": 1,
@@ -41203,7 +41203,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate Registry Run Key Persistence by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Windows host; registry key/WMI subscription/task name; initiating user/process; command/payload; event IDs; execution history.",
     "steps": [
       {
         "n": 1,
@@ -41552,7 +41552,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate WMI Event Subscription Persistence by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Windows host; registry key/WMI subscription/task name; initiating user/process; command/payload; event IDs; execution history.",
     "steps": [
       {
         "n": 1,
@@ -41901,7 +41901,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate Suspicious Cron Job Created by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Host; service/unit/task name; executable/path and arguments; creator account; service manager/audit event; persistence trigger and hash.",
     "steps": [
       {
         "n": 1,
@@ -42235,7 +42235,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate New Account Created with Elevated Privileges by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Host/domain; new or modified account; assigned group/role; initiating actor; account-management event ID; approval/change record.",
     "steps": [
       {
         "n": 1,
@@ -42569,7 +42569,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate Security Policy Modified Unexpectedly by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Host/domain; affected account/group/policy; initiating actor/process; before/after change; security audit events; privilege level and authorization record.",
     "steps": [
       {
         "n": 1,
@@ -42903,7 +42903,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate UAC Bypass Behaviour Suspected by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Windows host; user/session; process tree and integrity level; bypass technique indicators; command line; related registry/task events.",
     "steps": [
       {
         "n": 1,
@@ -43237,7 +43237,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate Kerberoasting Activity Suspected by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Account and domain; source/destination hosts; Kerberos/NTLM events; service principal/ticket metadata; logon type; related authentication sequence.",
     "steps": [
       {
         "n": 1,
@@ -43586,7 +43586,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate Pass-the-Hash Behaviour Suspected by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Account and domain; source/destination hosts; Kerberos/NTLM events; service principal/ticket metadata; logon type; related authentication sequence.",
     "steps": [
       {
         "n": 1,
@@ -44031,7 +44031,7 @@ window.SAINSEC_ALERTS = [
     "category": "Privilege Escalation & Persistence",
     "overview": "Investigate Golden Ticket or Forged Kerberos Ticket Indicators by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Account and domain; source/destination hosts; Kerberos/NTLM events; service principal/ticket metadata; logon type; related authentication sequence.",
     "steps": [
       {
         "n": 1,
@@ -44365,7 +44365,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate Large Data Upload to External Destination by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User/principal; source device/IP; accessed data objects/files; operation and volume; destination; audit/DLP events; business justification and owner.",
     "steps": [
       {
         "n": 1,
@@ -44805,7 +44805,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate Unusual Cloud Storage Download Volume by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User/principal; cloud storage account/bucket/site; objects/files accessed; bytes and timestamps; source IP/device; audit and sharing events.",
     "steps": [
       {
         "n": 1,
@@ -45109,7 +45109,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate Sensitive File Access Spike by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User; file path/object ID; sensitivity label; access operation; source device/IP; file audit/DLP event; time-of-day and peer baseline.",
     "steps": [
       {
         "n": 1,
@@ -45522,7 +45522,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate Mass File Download by One User by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User/principal; cloud storage account/bucket/site; objects/files accessed; bytes and timestamps; source IP/device; audit and sharing events.",
     "steps": [
       {
         "n": 1,
@@ -45935,7 +45935,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate Unusual Database Export Activity by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Database/server; database user; query/export operation; table/object; rows/bytes exported; client host/IP; audit event and destination.",
     "steps": [
       {
         "n": 1,
@@ -46239,7 +46239,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate Data Transfer to Personal Cloud Storage by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User/principal; cloud storage account/bucket/site; objects/files accessed; bytes and timestamps; source IP/device; audit and sharing events.",
     "steps": [
       {
         "n": 1,
@@ -46543,7 +46543,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate Sensitive Data Sent to External Email by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Sender/mailbox; recipient and external domain; message ID; sensitive-data/DLP match; attachment/hash; delivery status and mail trace.",
     "steps": [
       {
         "n": 1,
@@ -47020,7 +47020,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate DLP Policy Violation by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User; endpoint/mail/cloud app; matched policy and sensitive-data type; file/message/object; destination; DLP action; event ID.",
     "steps": [
       {
         "n": 1,
@@ -47324,7 +47324,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate Unusual Removable Media Copy Activity by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; user; USB device ID/serial; source and destination paths; copied file names/sizes/hashes; device-control/DLP events.",
     "steps": [
       {
         "n": 1,
@@ -47628,7 +47628,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate Access to Sensitive Data Outside Working Pattern by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User/principal; source device/IP; accessed data objects/files; operation and volume; destination; audit/DLP events; business justification and owner.",
     "steps": [
       {
         "n": 1,
@@ -47932,7 +47932,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate Repeated Access Denied to Restricted Data by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User/principal; source device/IP; accessed data objects/files; operation and volume; destination; audit/DLP events; business justification and owner.",
     "steps": [
       {
         "n": 1,
@@ -48236,7 +48236,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate Unusual Repository Clone or Source Code Download by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Repository/project; user/token; clone/download operation; source IP/device; repo and file scope; audit event; unusual volume.",
     "steps": [
       {
         "n": 1,
@@ -48540,7 +48540,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate Bulk Share-Link Creation for Sensitive Files by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User; file/site/drive; sharing-link type and scope; recipients/permissions; creation event; file sensitivity and access history.",
     "steps": [
       {
         "n": 1,
@@ -48953,7 +48953,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate Suspicious Archive Creation Before Data Transfer by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint/user; archive process and command line; archive path/hash/size; source files; subsequent network transfer; EDR/file events.",
     "steps": [
       {
         "n": 1,
@@ -49257,7 +49257,7 @@ window.SAINSEC_ALERTS = [
     "category": "Data Exfiltration & Insider Threat",
     "overview": "Investigate Employee Account Accessing Unusual Data Sets by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "User/principal; source device/IP; accessed data objects/files; operation and volume; destination; audit/DLP events; business justification and owner.",
     "steps": [
       {
         "n": 1,
@@ -49566,7 +49566,7 @@ window.SAINSEC_ALERTS = [
     "category": "Vulnerability, Exposure & Security Configuration",
     "overview": "Investigate Critical Vulnerability Detected on Internet-Facing Asset by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Asset/hostname; CVE and severity; detected software/version; exposure path; patch status; scan timestamp; asset criticality and owner.",
     "steps": [
       {
         "n": 1,
@@ -49969,7 +49969,7 @@ window.SAINSEC_ALERTS = [
     "category": "Vulnerability, Exposure & Security Configuration",
     "overview": "Investigate Exploitation Attempt Against Known Vulnerability by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Target asset; CVE/signature; source IP; request/payload metadata; IDS/WAF/EDR events; vulnerable version; exploit outcome evidence.",
     "steps": [
       {
         "n": 1,
@@ -50372,7 +50372,7 @@ window.SAINSEC_ALERTS = [
     "category": "Vulnerability, Exposure & Security Configuration",
     "overview": "Investigate Unpatched High-Risk Endpoint Detected by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Asset/hostname; CVE and severity; detected software/version; exposure path; patch status; scan timestamp; asset criticality and owner.",
     "steps": [
       {
         "n": 1,
@@ -50785,7 +50785,7 @@ window.SAINSEC_ALERTS = [
     "category": "Vulnerability, Exposure & Security Configuration",
     "overview": "Investigate Cloud Resource with Publicly Exposed Management Port by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Cloud resource/asset; public IP; management port/protocol; security group/firewall rule; asset owner; exposure duration and access logs.",
     "steps": [
       {
         "n": 1,
@@ -51128,7 +51128,7 @@ window.SAINSEC_ALERTS = [
     "category": "Vulnerability, Exposure & Security Configuration",
     "overview": "Investigate Weak TLS or Certificate Configuration by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Hostname/service endpoint; certificate thumbprint/issuer/expiry; TLS protocol/cipher; scan timestamp; affected listener and dependent applications.",
     "steps": [
       {
         "n": 1,
@@ -51466,7 +51466,7 @@ window.SAINSEC_ALERTS = [
     "category": "Vulnerability, Exposure & Security Configuration",
     "overview": "Investigate Expired or Near-Expiry Security Certificate by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Hostname/service endpoint; certificate thumbprint/issuer/expiry; TLS protocol/cipher; scan timestamp; affected listener and dependent applications.",
     "steps": [
       {
         "n": 1,
@@ -51804,7 +51804,7 @@ window.SAINSEC_ALERTS = [
     "category": "Vulnerability, Exposure & Security Configuration",
     "overview": "Investigate Unencrypted Sensitive Storage Detected by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Storage account/bucket/volume; encryption setting/key; resource scope; actor/change event; data classification; public/access policy.",
     "steps": [
       {
         "n": 1,
@@ -52147,7 +52147,7 @@ window.SAINSEC_ALERTS = [
     "category": "Vulnerability, Exposure & Security Configuration",
     "overview": "Investigate Endpoint Security Baseline Violation by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Affected asset/resource; configuration/control name; expected versus observed setting; change actor/time; scan or audit evidence; exposure and business impact.",
     "steps": [
       {
         "n": 1,
@@ -52495,7 +52495,7 @@ window.SAINSEC_ALERTS = [
     "category": "Vulnerability, Exposure & Security Configuration",
     "overview": "Investigate Unapproved Software Installation by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint; software name/version/publisher; installer process/user; package hash/signature; installation time; allowlist/change record.",
     "steps": [
       {
         "n": 1,
@@ -52833,7 +52833,7 @@ window.SAINSEC_ALERTS = [
     "category": "Vulnerability, Exposure & Security Configuration",
     "overview": "Investigate Misconfigured Identity or Access Policy by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Tenant; identity/access policy; changed condition/exclusion/role; actor; before/after configuration; audit event and affected principals.",
     "steps": [
       {
         "n": 1,
@@ -53181,7 +53181,7 @@ window.SAINSEC_ALERTS = [
     "category": "Security Tools, Logs & Detection Health",
     "overview": "Investigate SIEM Data Ingestion Stopped by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Workspace/SIEM; affected table/data connector; last event timestamp; ingestion volume/latency; agent/collector status; error codes and gap duration.",
     "steps": [
       {
         "n": 1,
@@ -53465,7 +53465,7 @@ window.SAINSEC_ALERTS = [
     "category": "Security Tools, Logs & Detection Health",
     "overview": "Investigate Critical Log Source Disconnected by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Connector/log source ID; source host/API; connection/health status; last successful event; authentication/API errors; affected tables and time gap.",
     "steps": [
       {
         "n": 1,
@@ -53749,7 +53749,7 @@ window.SAINSEC_ALERTS = [
     "category": "Security Tools, Logs & Detection Health",
     "overview": "Investigate Audit Logging Disabled by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Tenant/resource; audit/diagnostic setting; actor; configuration before/after; audit event; log destination and missing-telemetry window.",
     "steps": [
       {
         "n": 1,
@@ -54033,7 +54033,7 @@ window.SAINSEC_ALERTS = [
     "category": "Security Tools, Logs & Detection Health",
     "overview": "Investigate Detection Rule Disabled or Modified by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "SIEM rule/analytic ID; enabled state/schedule/threshold/exclusions; modifier; audit event; affected data sources and alert coverage.",
     "steps": [
       {
         "n": 1,
@@ -54317,7 +54317,7 @@ window.SAINSEC_ALERTS = [
     "category": "Security Tools, Logs & Detection Health",
     "overview": "Investigate Unusual Alert Suppression or Exclusion Change by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "SIEM rule/analytic ID; enabled state/schedule/threshold/exclusions; modifier; audit event; affected data sources and alert coverage.",
     "steps": [
       {
         "n": 1,
@@ -54601,7 +54601,7 @@ window.SAINSEC_ALERTS = [
     "category": "Security Tools, Logs & Detection Health",
     "overview": "Investigate Security Agent Tampering Suspected by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Endpoint/sensor; security agent service/process; health state; stop/uninstall/configuration events; actor; last telemetry timestamp.",
     "steps": [
       {
         "n": 1,
@@ -54885,7 +54885,7 @@ window.SAINSEC_ALERTS = [
     "category": "Security Tools, Logs & Detection Health",
     "overview": "Investigate Time Synchronization Anomaly in Security Logs by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Host/collector; observed timestamp and ingestion time; NTP source/offset; timezone; parser/collector state; affected correlation window.",
     "steps": [
       {
         "n": 1,
@@ -55169,7 +55169,7 @@ window.SAINSEC_ALERTS = [
     "category": "Security Tools, Logs & Detection Health",
     "overview": "Investigate Excessive SIEM Ingestion Failure by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Workspace/SIEM; affected table/data connector; last event timestamp; ingestion volume/latency; agent/collector status; error codes and gap duration.",
     "steps": [
       {
         "n": 1,
@@ -55453,7 +55453,7 @@ window.SAINSEC_ALERTS = [
     "category": "Security Tools, Logs & Detection Health",
     "overview": "Investigate Security Integration or Connector Failure by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "Connector/log source ID; source host/API; connection/health status; last successful event; authentication/API errors; affected tables and time gap.",
     "steps": [
       {
         "n": 1,
@@ -55737,7 +55737,7 @@ window.SAINSEC_ALERTS = [
     "category": "Security Tools, Logs & Detection Health",
     "overview": "Investigate Repeated Detection Rule Execution Errors by validating the triggering telemetry, establishing actor/resource context, correlating related events, assessing impact, and recording an evidence-based disposition. An alert is an investigative lead, not proof of compromise.",
     "severity": "High (starting guide; adjust to local risk and alert fidelity)",
-    "entities": "Depends on alert: user, host, IP/domain, cloud resource, message, data object, or security integration.",
+    "entities": "SIEM rule/analytic ID; enabled state/schedule/threshold/exclusions; modifier; audit event; affected data sources and alert coverage.",
     "steps": [
       {
         "n": 1,
@@ -56031,7 +56031,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate Unauthorized PLC Logic Modification using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "PLC/controller asset ID; engineering workstation; engineer account; project/program version or checksum; programming-session telemetry; change ticket and OT owner.",
     "steps": [
       {
         "n": 1,
@@ -56398,7 +56398,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate Unexpected PLC Program Download using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "PLC/controller asset ID; engineering workstation; engineer account; project/program version or checksum; programming-session telemetry; change ticket and OT owner.",
     "steps": [
       {
         "n": 1,
@@ -56765,7 +56765,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate PLC Firmware Change Detected using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "PLC/RTU/IED asset; vendor/model; current and previous firmware version; initiating workstation/account; approved package/checksum; maintenance record.",
     "steps": [
       {
         "n": 1,
@@ -57188,7 +57188,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate Unauthorized SCADA Configuration Change using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "SCADA server/project; changed configuration object; actor/workstation; before/after values; audit event; change ticket and approved maintenance window.",
     "steps": [
       {
         "n": 1,
@@ -57583,7 +57583,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate Suspicious HMI Login using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "HMI/engineering asset; user/account; source host/IP; authentication result/time; remote-access/jump-host session; OT role and shift context.",
     "steps": [
       {
         "n": 1,
@@ -57959,7 +57959,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate Unauthorized Engineering Workstation Access using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "OT asset/controller; source/destination peers; industrial protocol/activity; passive sensor event; zone/conduit; maintenance/change record; OT owner assessment.",
     "steps": [
       {
         "n": 1,
@@ -58330,7 +58330,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate Modbus Write Command Anomaly using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "Source/destination OT assets; Modbus function code; register/address; read/write operation; timestamp; passive sensor event; approved process context.",
     "steps": [
       {
         "n": 1,
@@ -58713,7 +58713,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate DNP3 Control Command Anomaly using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "Outstation/master assets; DNP3 control function/object; source/destination; timestamp; passive sensor record; operator authorization and process context.",
     "steps": [
       {
         "n": 1,
@@ -59096,7 +59096,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate OPC UA Unauthorized Session using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "Client/server OT assets; OPC UA session identity/certificate; endpoint; service/action; result/time; passive sensor and server audit records.",
     "steps": [
       {
         "n": 1,
@@ -59479,7 +59479,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate EtherNet/IP Configuration Change using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "Industrial controller/adapter; engineering workstation; changed object/configuration; CIP service; source/destination; audit record and change ticket.",
     "steps": [
       {
         "n": 1,
@@ -59914,7 +59914,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate Unauthorized IT-to-OT Connection using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "Source/destination zones and assets; IP/port/protocol; firewall rule/action; connection result; approved conduit matrix; change ticket and timestamps.",
     "steps": [
       {
         "n": 1,
@@ -60349,7 +60349,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate OT Firewall Rule Modified using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "Source/destination zones and assets; IP/port/protocol; firewall rule/action; connection result; approved conduit matrix; change ticket and timestamps.",
     "steps": [
       {
         "n": 1,
@@ -60784,7 +60784,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate Unexpected Remote Vendor Access using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "Vendor identity/company; VPN/jump-host session; source IP; target OT asset; MFA/session recording; approved ticket and access window.",
     "steps": [
       {
         "n": 1,
@@ -61155,7 +61155,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate OT Asset Discovery Scan using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "OT sensor/site/zone; observed IP/MAC/vendor/model; first-seen time; protocol fingerprint; switch port; asset inventory and observed peers.",
     "steps": [
       {
         "n": 1,
@@ -61562,7 +61562,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate New or Unknown OT Device Detected using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "OT sensor/site/zone; observed IP/MAC/vendor/model; first-seen time; protocol fingerprint; switch port; asset inventory and observed peers.",
     "steps": [
       {
         "n": 1,
@@ -61973,7 +61973,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate Critical OT Asset Communication Lost using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "Critical OT asset; last-seen timestamp; passive sensor and network path; switch/firewall health; process/maintenance context; operator assessment.",
     "steps": [
       {
         "n": 1,
@@ -62388,7 +62388,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate OT Network Traffic Spike using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "OT zone/assets; source/destination peers; protocol and packet/byte rate; time window; sensor health; baseline and maintenance/process context.",
     "steps": [
       {
         "n": 1,
@@ -62823,7 +62823,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate Industrial Protocol Function-Code Anomaly using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "Controller/master/client assets; industrial protocol and function/service code; source/destination; time/frequency; passive sensor event; approved baseline.",
     "steps": [
       {
         "n": 1,
@@ -63206,7 +63206,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate Safety Instrumented System Configuration Change using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "Safety PLC/SIS asset; engineering station/account; change type and timestamp; version/checksum; management-of-change record; safety owner assessment.",
     "steps": [
       {
         "n": 1,
@@ -63569,7 +63569,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate OT Backup or Configuration Export Anomaly using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "Engineering workstation/user; controller/project; exported file/path/hash/size; destination/repository or USB; timestamp; approved backup record.",
     "steps": [
       {
         "n": 1,
@@ -63960,7 +63960,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate OT Authentication Failure Spike using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "HMI/engineering asset; user/account; source host/IP; authentication result/time; remote-access/jump-host session; OT role and shift context.",
     "steps": [
       {
         "n": 1,
@@ -64336,7 +64336,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate Unauthorized USB Activity on Engineering Workstation using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "Engineering workstation; logged-on user; USB vendor/product/serial; file operations; device-control logs; change/maintenance approval.",
     "steps": [
       {
         "n": 1,
@@ -64723,7 +64723,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate OT Antivirus or Security Monitoring Disabled using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "OT sensor/endpoint; AV/security agent; service/health state; last-seen telemetry; actor/change event; affected zone and monitoring coverage.",
     "steps": [
       {
         "n": 1,
@@ -65106,7 +65106,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate OT Network Segmentation Violation using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "Source/destination zones and assets; IP/port/protocol; firewall rule/action; connection result; approved conduit matrix; change ticket and timestamps.",
     "steps": [
       {
         "n": 1,
@@ -65541,7 +65541,7 @@ window.SAINSEC_ALERTS = [
     "category": "OT Security",
     "overview": "Investigate Unusual Industrial Controller Communication using passive OT telemetry, approved engineering/audit records, asset inventory and plant-owner context. Validate whether the activity is authorized and determine any potential effect on availability, integrity or safety. An alert is not proof of compromise.",
     "severity": "High (starting guide; use site-specific consequence, criticality and safety escalation matrix)",
-    "entities": "PLC/RTU/IED, SCADA/HMI, engineering workstation, OT server, network zone/conduit, industrial protocol peer, safety system or OT monitoring sensor.",
+    "entities": "Controller/master/client assets; industrial protocol and function/service code; source/destination; time/frequency; passive sensor event; approved baseline.",
     "steps": [
       {
         "n": 1,
