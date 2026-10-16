@@ -117,6 +117,95 @@
  }
 
  const TOOL_NAMES=['Microsoft Sentinel','Splunk','IBM QRadar','Microsoft Defender XDR','CrowdStrike Falcon','SentinelOne','Elastic Security'];
+
+ function eventReferences(a,st){
+  const text=(a.name+' '+a.category+' '+st.title+' '+st.check).toLowerCase();
+  const cat=a.category||'';
+  const refs=[];
+  const add=(source,items,note)=>refs.push({source,items,note});
+  if(/Identity & Authentication/.test(cat)){
+   if(/failed|success|login|sign.?in|authenticat|password|brute|spray|account lock|disabled account/.test(text)){
+    add('Windows Security',[
+     ['4625','An account failed to log on'],
+     ['4624','An account successfully logged on'],
+     ['4740','A user account was locked out'],
+     ['4776','Credential validation using NTLM']
+    ],'Windows Security Event IDs; exact availability depends on audit policy and log collection.');
+   }
+   if(/privilege|service account|explicit credential|credential/.test(text)) add('Windows Security',[['4648','A logon was attempted using explicit credentials'],['4672','Special privileges assigned to a new logon']], 'Use alongside the authentication sequence and account context.');
+   add('Microsoft Entra ID',['SigninLogs — cloud sign-in records','ResultType — sign-in result/error code; 0 indicates success','ConditionalAccessStatus / AuthenticationDetails — policy and MFA context'],'These are native table/field references, not Windows Event IDs. Check tenant schema and licensing.');
+   if(/linux|ssh|unix/.test(text)) add('Linux authentication',['sshd/PAM authentication messages in journald, /var/log/auth.log or /var/log/secure'],'Native messages vary by distribution, syslog pipeline and audit configuration.');
+  } else if(/Endpoint, Malware & EDR/.test(cat)){
+   if(/process|powershell|command|script|parent.child|injection|living.off|credential|lsass/.test(text)) add('Windows / Sysmon process telemetry',[
+    ['4688','A new process was created (Windows process creation auditing)'],
+    ['Sysmon 1','Process creation, including configured command-line/parent fields'],
+    ['Sysmon 10','Process access; relevant to some LSASS access investigations']
+   ],'Sysmon IDs require Sysmon deployment and appropriate configuration; Windows 4688 needs process-creation auditing.');
+   if(/file|malware|ransomware|quarantin|hash|dll|usb|archive/.test(text)) add('Windows / Sysmon file telemetry',[
+    ['4663','An attempt was made to access an object (when object auditing is configured)'],
+    ['Sysmon 11','File creation (if configured)'],
+    ['Sysmon 7','Image/DLL loaded (if configured)']
+   ],'These events do not independently prove malicious activity; correlate with EDR process/file evidence.');
+   if(/registry|persistence|scheduled task|service|tamper|agent|security tool/.test(text)) add('Windows persistence / system telemetry',[
+    ['4657','A registry value was modified (when registry auditing is configured)'],
+    ['4698','A scheduled task was created'],
+    ['4697 / System 7045','A service was installed (audit source and OS logging vary)']
+   ],'Verify the relevant audit policy and actual event source.');
+   add('Microsoft Defender XDR','DeviceProcessEvents / DeviceFileEvents / DeviceRegistryEvents / DeviceLogonEvents — endpoint activity tables','Table availability and fields depend on onboarding, retention and licensing.');
+  } else if(/Network, Firewall, DNS & Proxy/.test(cat)){
+   if(/dns|domain/.test(text)) add('DNS telemetry',['Sysmon 22 — DNS query (if Sysmon DNS logging is configured)','DNS analytical/server logs — query, client, response and timestamp'],'No universal DNS Event ID across all DNS products; use the source-native query/event fields.');
+   if(/connection|traffic|firewall|port|scan|rdp|smb|network|exfiltrat/.test(text)) add('Windows network telemetry',[['5156','Windows Filtering Platform permitted a connection'],['5157','Windows Filtering Platform blocked a connection'],['Sysmon 3','Network connection (if configured)']], 'Windows Filtering Platform auditing and Sysmon configuration are prerequisites; firewall/vendor logs may use other schemas.');
+   add('Network/security devices','Firewall, IDS/IPS, proxy, DNS and NetFlow records — source-native action, protocol, source/destination IP/port, bytes and rule ID','Vendor-specific event IDs and field names vary; use the product-native event type and rule/action fields.');
+  } else if(/Email, Phishing & Collaboration/.test(cat)){
+   add('Microsoft 365 / Defender for Office 365','EmailEvents, EmailAttachmentInfo, EmailUrlInfo, UrlClickEvents; Unified Audit Log operations relevant to mailbox, inbox rules, forwarding or OAuth consent','These are native tables/operation names, not Windows Event IDs; availability depends on workload, license and ingestion.');
+   if(/rule|forward|mailbox|delete|purge|oauth|consent/.test(text)) add('Microsoft 365 audit operations',['New-InboxRule / Set-InboxRule / UpdateInboxRules (operation names vary by audit source)','MailItemsAccessed / message trace or workload-specific audit operations where available'],'Validate exact operation names against the tenant audit schema and time range.');
+  } else if(/Cloud Security/.test(cat)){
+   if(/aws/.test(text)) add('AWS CloudTrail',['eventName — API action','eventSource — service','userIdentity — caller context','responseElements / errorCode — outcome where recorded'],'AWS CloudTrail records are native API audit events, not Windows Event IDs.');
+   if(/azure|microsoft 365|key vault|entra/.test(text)) add('Azure / Entra audit telemetry',['Azure Activity Log: operationName, caller, resourceId, status','AuditLogs: activity / targetResources / initiatedBy','AzureDiagnostics or resource-specific tables for service logs'],'Exact table depends on diagnostic settings and connector configuration.');
+   if(/google cloud|gcp/.test(text)) add('Google Cloud Audit Logs',['methodName — API operation','principalEmail — actor','resourceName — target','status — outcome'],'Native audit fields vary by log type and service.');
+   if(!/aws|azure|microsoft 365|key vault|entra|google cloud|gcp/.test(text)) add('Cloud audit telemetry',['Cloud provider audit event / API operation','Actor, target resource, operation, result and request/correlation ID'],'Select the provider-native audit source configured for this alert.');
+  } else if(/Privilege Escalation & Persistence/.test(cat)){
+   if(/group|admin|privilege|account created|membership/.test(text)) add('Windows Security',[
+    ['4720','A user account was created'],
+    ['4728','A member was added to a security-enabled global group'],
+    ['4732','A member was added to a security-enabled local group'],
+    ['4756','A member was added to a security-enabled universal group'],
+    ['4672','Special privileges assigned to a new logon']
+   ],'Event IDs depend on domain/local audit policy and source coverage.');
+   if(/service|scheduled task|registry|wmi|persistence/.test(text)) add('Windows persistence events',[
+    ['4697 / System 7045','A service was installed'],
+    ['4698','A scheduled task was created'],
+    ['4657','A registry value was modified, if registry auditing is configured'],
+    ['Sysmon 19–21','WMI event filter/consumer/binding activity, if configured']
+   ],'Not every event is enabled by default; validate auditing and EDR telemetry.');
+   if(/kerberoast|kerberos|ticket|pass.the.hash/.test(text)) add('Windows authentication / Kerberos',[
+    ['4768','A Kerberos authentication ticket (TGT) was requested'],
+    ['4769','A Kerberos service ticket was requested'],
+    ['4776','NTLM credential validation']
+   ],'Interpret ticket events with account, encryption, volume and baseline context; event presence alone is not proof of abuse.');
+   if(/linux|sudo/.test(text)) add('Linux privilege / persistence',['sudo/authentication journal records','auditd EXECVE/USER_CMD or relevant syscall records when configured','systemd journal/service unit changes or cron logs'],'Linux event identifiers and fields depend on auditd, journald and distribution configuration.');
+  } else if(/Data Exfiltration & Insider Threat/.test(cat)){
+   add('Data access / transfer telemetry',['File/object access audit records','Cloud storage audit operations and download/export events','DLP events and policy/action fields','Proxy/firewall/flow records: bytes, destination and time'],'Native event IDs depend on storage, OS, cloud, database and DLP product; correlate actor, object, volume and destination.');
+   if(/email/.test(text)) add('Microsoft 365 mail audit',['EmailEvents / message trace','Unified Audit Log mailbox activity and forwarding operations'],'These are source-native records rather than Windows Event IDs.');
+   if(/usb|removable/.test(text)) add('Windows removable media / file access',['4663 — object access attempt when auditing is configured','DeviceEvents / DeviceFileEvents — endpoint device/file telemetry when available'],'Confirm device control and object-access auditing are enabled.');
+  } else if(/Vulnerability, Exposure & Security Configuration/.test(cat)){
+   add('Vulnerability / configuration telemetry',['Scanner-native finding/plugin/CVE ID and asset evidence','Cloud configuration change/audit operation','Windows System/Security or endpoint inventory records when relevant'],'Most vulnerability findings do not have one universal OS Event ID; retain scanner/plugin ID, CVE, asset and observed configuration.');
+   if(/tls|certificate/.test(text)) add('Certificate / TLS telemetry',['Certificate thumbprint/serial, issuer, validity dates and TLS handshake/scan result'],'Use scanner, certificate inventory and service logs; do not infer an OS Event ID where none exists.');
+  } else if(/Security Tools, Logs & Detection Health/.test(cat)){
+   add('SIEM / connector / audit health telemetry',['Connector/agent health status and last successful ingestion timestamp','Data collection rule / diagnostic setting / audit policy change records','Detection rule audit/change history and execution errors'],'These are platform-native health/audit records; there is no universal Windows Event ID for SIEM connector failures.');
+   if(/windows|service|agent|tamper/.test(text)) add('Windows system telemetry',[['System 7036','A service entered a running/stopped state (service-specific interpretation required)'],['System 7040','A service start type was changed'],['Security 1102','The audit log was cleared']], 'Availability depends on OS version, audit settings and source collection.');
+  } else if(/OT Security/.test(cat)){
+   add('OT / ICS native telemetry',['PLC/engineering workstation vendor audit events: login, logic download, program/firmware/config change','Modbus function codes: read functions (e.g. 03/04) versus write functions (e.g. 05/06/0F/10); validate device/protocol context','DNP3 control/select-operate events and function/object details','OPC UA session, authentication, method/write and audit events'],'OT event identifiers are vendor/protocol-specific; function codes are protocol operations, not universal security Event IDs. Validate with passive telemetry and OT owner.');
+   if(/authentication|login|access|vendor/.test(text)) add('OT identity / remote access',['HMI/engineering workstation authentication audit records','VPN/jump host/remote access gateway session and approval logs'],'No universal OT Event ID; use the specific vendor, gateway and Windows/Linux source records.');
+  }
+  if(!refs.length) add('Source-native event references',['Use the alert source’s event type, operation/action, result/status and correlation/request ID'],'No universal Event ID applies to every product. Confirm source, auditing prerequisites and actual schema.');
+  return refs;
+ }
+ function eventReferenceMarkup(a,st){
+  const refs=eventReferences(a,st);
+  return `<div class="event-reference-panel"><strong>RELEVANT EVENT IDs / NATIVE EVENT TYPES &amp; MEANING</strong>${refs.map(r=>`<div class="event-reference-source"><b>${esc(r.source)}</b><ul>${r.items.map(it=>`<li>${Array.isArray(it)?`<code>${esc(it[0])}</code> — ${esc(it[1])}`:esc(it)}</li>`).join('')}</ul><small>${esc(r.note)}</small></div>`).join('')}</div>`;
+ }
+
  function stepQueryMarkup(a,st){
   const first=(a.queries||[]).find(q=>q.tool===TOOL_NAMES[0])||(a.queries||[])[0]||{tool:'Manual investigation',language:'Manual pivot guidance',purpose:'Relevant telemetry',query:'Start from the alert entity and time window; pivot using the fields listed above.',note:'No executable query was provided for this tool.'};
   const options=TOOL_NAMES.map(t=>`<option value="${esc(t)}" ${t===first.tool?'selected':''}>${esc(t)}</option>`).join('');
@@ -150,12 +239,16 @@
   return {language:q.language||'Query starter',source:chosen.source||q.purpose||'Relevant telemetry',query,note};
  }
  function sampleTemplate(a){
-  const steps=a.steps.map(st=>`${String(st.n).padStart(2,'0')}. ${st.title}\nFinding: [enter observed values; do not infer from the alert title]\nEvidence/event IDs: [IDs, fields and timestamps]\nStatus: [confirmed / ruled out / pending / not available]`).join('\n\n');
-  return `SAMPLE ANALYSIS & CLOSURE — ${a.name}\n\nAlert definition / trigger: ${a.overview}\nAlert ID: [alert/incident ID]\nSeverity: [severity and rationale]\nAffected host/resource: [hostname/resource]\nAffected user/account: [user/account or N/A]\nFirst seen: [date/time + timezone]\nLast seen: [date/time + timezone]\nDetection source and status: [product/rule; detected/blocked/quarantined/remediation failed]\n\nINVESTIGATION FINDINGS\n${steps}\n\nSCOPE AND IMPACT\nAffected hosts/users/shares/resources: [values or “none identified in reviewed telemetry”]\nLateral movement: [evidence / not observed in available telemetry / undetermined]\nData access or exfiltration: [evidence / not observed in available telemetry / undetermined]\nBusiness impact: [impact and asset owner]\n\nCONTAINMENT / REMEDIATION\nActions taken: [action, operator/approver, timestamp]\nAction status: [success/failure/pending; verification evidence]\nRecovery / follow-up: [owner, action and due date]\n\nCLASSIFICATION: [True Positive / Benign Positive / False Positive / Undetermined]\nRationale: [evidence supporting the disposition]\nEvidence references: [query names, event IDs, raw logs, hashes, screenshots/case links]\nTelemetry gaps / limitations: [missing source, retention, field or validation]\nResidual risk and next owner/action: [details]\n\nClosure summary: Based on [specific evidence], ${a.name} was classified as [classification] for [host/resource] during [time range]. Findings: [concise factual summary]. Actions: [verified containment/remediation]. Remaining risk or evidence gaps: [details]. Follow-up owner: [owner].`;
+  const steps=a.steps.map(st=>{
+   const title=st.title.replace(/[.]+$/,'');
+   const past=title.replace(/^Review\b/i,'Reviewed').replace(/^Validate\b/i,'Validated').replace(/^Inspect\b/i,'Inspected').replace(/^Correlate\b/i,'Correlated').replace(/^Compare\b/i,'Compared').replace(/^Assess\b/i,'Assessed').replace(/^Determine\b/i,'Determined').replace(/^Recommend\b/i,'Recommended').replace(/^Check\b/i,'Checked').replace(/^Confirm\b/i,'Confirmed').replace(/^Investigate\b/i,'Investigated').replace(/^Identify\b/i,'Identified').replace(/^Examine\b/i,'Examined').replace(/^Verify\b/i,'Verified').replace(/^Analyze\b/i,'Analyzed').replace(/^Trace\b/i,'Traced').replace(/^Hunt\b/i,'Hunted').replace(/^Scope\b/i,'Scoped').replace(/^Classify\b/i,'Classified').replace(/^Look\b/i,'Looked').replace(/^Pivot\b/i,'Pivoted').replace(/^Establish\b/i,'Established').replace(/^Enrich\b/i,'Enriched').replace(/^Analyse\b/i,'Analysed').replace(/^Search\b/i,'Searched').replace(/^Quantify\b/i,'Quantified').replace(/^Measure\b/i,'Measured').replace(/^Test\b/i,'Tested').replace(/^Escalate\b/i,'Escalated').replace(/^Preserve\b/i,'Preserved').replace(/^Open\b/i,'Opened')
+   return `${String(st.n).padStart(2,'0')}. ${past}\nThe investigation reviewed the alert-specific condition: ${st.check} Findings: [observed alert-specific results, including relevant event IDs/native event types and their meaning where available]. Supporting evidence was [source/table, event/operation ID, timestamp and correlation/reference]. Assessment: [what the evidence supports; confirmed / not observed in available telemetry / undetermined].`;
+  }).join('\n\n');
+  return `SAMPLE ANALYSIS & CLOSURE — ${a.name}\n\nAlert Definition / Trigger: ${a.overview} The alert was treated as an investigative signal, not proof of compromise by itself.\nAlert ID: [actual incident/alert ID]\nSeverity: [actual severity and evidence-based rationale; source severity if available]\nAffected Host/Resource: [confirmed host/resource or undetermined]\nAffected User/Account: [confirmed user/account or N/A]\nFirst Seen: [YYYY-MM-DD HH:MM:SS UTC]\nLast Seen: [YYYY-MM-DD HH:MM:SS UTC]\nDetection Source and Status: [actual product/rule/source; detected/blocked/quarantined/remediation failed; investigation status]\n\nINVESTIGATION FINDINGS\n${steps}\n\nSCOPE AND IMPACT\nAffected hosts/users/resources: [confirmed entities or none identified in reviewed telemetry]\nLateral movement / related activity: [specific evidence / not observed in available telemetry / undetermined, as relevant to this alert]\nData or resource access / business impact: [observed activity, impact and asset owner / not observed in available telemetry / undetermined]\n\nCONTAINMENT / REMEDIATION\nRecommended or completed actions: [action, operator/approver and timestamp; distinguish recommendation from action actually taken]\nAction status and validation: [completed/failed/pending/not required, with verification evidence]\nRecovery / follow-up: [owner, action and due date]\n\nClassification: [True Positive / Benign Positive / False Positive / Undetermined]\nRationale: [specific evidence supporting the disposition; include legitimate explanation where validated]\nEvidence references: [query names, source/table, event IDs/native operation names, raw logs, hashes or case links]\nTelemetry gaps / limitations: [missing source, audit prerequisite, retention gap, unavailable field or pending validation]\nResidual risk and next owner/action: [remaining risk, owner, action and due date]\n\nClosure summary: Based on [specific verified evidence], the ${a.name} alert was classified as [classification] for [affected entity] during [investigation time range]. The investigation established [concise factual findings tied to the steps above]. Response actions were [actions actually taken and verified, or pending actions]. Remaining risks or telemetry gaps were [details]. Follow-up owner/action/due date: [details].`;
  }
  function card(a){
   const refs=a.references.map(r=>`<a href="${esc(r[1])}" target="_blank" rel="noopener noreferrer">${esc(r[0])} ↗</a>`).join('');
-  const steps=a.steps.map(st=>`<details class="step-panel"><summary><span>${String(st.n).padStart(2,'0')}</span>${esc(st.title)}</summary><div class="step-content"><p><strong>WHAT TO CHECK</strong><br>${esc(st.check)}</p><p><strong>FIELDS TO CAPTURE</strong><br>${esc(st.fields)}</p>${stepQueryMarkup(a,st)}${(st.osint&&st.osint.length)||contextualTools(a,st).length?`<div class="osint-links"><strong>Useful tools for this investigation step</strong>${[...(st.osint||[]),...contextualTools(a,st)].filter((o,i,arr)=>arr.findIndex(x=>x.name===o.name)===i).map(o=>`<a href="${esc(o.url)}" target="_blank" rel="noopener noreferrer">${esc(o.name)} ↗</a>`).join('')}<small>Check the specific evidence relevant to this alert. Reputation and sandbox results are leads, not proof.</small></div>`:''}${quickLookupHtml(a,st)}</div></details>`).join('');
+  const steps=a.steps.map(st=>`<details class="step-panel"><summary><span>${String(st.n).padStart(2,'0')}</span>${esc(st.title)}</summary><div class="step-content"><p><strong>WHAT TO CHECK</strong><br>${esc(st.check)}</p><p><strong>FIELDS TO CAPTURE</strong><br>${esc(st.fields)}</p>${eventReferenceMarkup(a,st)}${stepQueryMarkup(a,st)}${(st.osint&&st.osint.length)||contextualTools(a,st).length?`<div class="osint-links"><strong>Useful tools for this investigation step</strong>${[...(st.osint||[]),...contextualTools(a,st)].filter((o,i,arr)=>arr.findIndex(x=>x.name===o.name)===i).map(o=>`<a href="${esc(o.url)}" target="_blank" rel="noopener noreferrer">${esc(o.name)} ↗</a>`).join('')}<small>Check the specific evidence relevant to this alert. Reputation and sandbox results are leads, not proof.</small></div>`:''}${quickLookupHtml(a,st)}</div></details>`).join('');
   const classes=Object.entries(a.classifications).map(([k,v])=>`<div class="classification-panel"><h4>${esc(k)}</h4><p><b>Recommendation</b><br>${esc(v.recommendation)}</p><p><b>Sample closure comment</b><br>${esc(v.closure)}</p><button class="copy-btn" data-close="${esc(k)}">Copy closure template</button></div>`).join('');
   const qs=a.queries.map((q,i)=>`<button type="button" data-query-tool="${i}" aria-selected="${i===0?'true':'false'}">${esc(q.tool)}</button>`).join('');
   const first=a.queries[0];

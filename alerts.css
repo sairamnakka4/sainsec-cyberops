@@ -237,3 +237,14 @@ body{background:var(--alert-bg);color:var(--alert-text)}
 .final-analysis-template{max-height:520px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55}
 .step-query-panel .copy-btn,.sample-analysis-final .copy-btn{margin-top:8px}
 @media(max-width:600px){.step-query-panel,.sample-analysis-final{padding:10px}.step-query-code{font-size:.78rem}.final-analysis-template{font-size:.8rem}}
+
+
+/* Event references added to investigation steps */
+.event-reference-panel{margin:12px 0;padding:12px;border:1px solid var(--alert-border);border-radius:10px;background:rgba(9,25,34,.72)}
+.event-reference-panel>strong{display:block;color:var(--alert-accent);font-size:.86rem;margin-bottom:10px}
+.event-reference-source{margin:10px 0 0;padding-top:9px;border-top:1px solid var(--alert-border)}
+.event-reference-source b{display:block;margin-bottom:5px}
+.event-reference-source ul{margin:6px 0;padding-left:22px}
+.event-reference-source li{margin:5px 0;overflow-wrap:anywhere}
+.event-reference-source code{color:#c4fff0;background:#10232d;border:1px solid var(--alert-border);border-radius:4px;padding:1px 4px}
+.event-reference-source small{display:block;color:var(--alert-muted);line-height:1.45}
