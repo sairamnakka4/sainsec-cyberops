@@ -112,3 +112,14 @@ body{background:var(--alert-bg);color:var(--alert-text)}
  .lookup-buttons button{flex:1 1 100%}
  .classification-panel{overflow-wrap:anywhere}
 }
+
+
+/* Alert definition and trigger conditions: visible before the response workflow */
+.definition-trigger-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
+.definition-trigger-grid .guide-panel:last-child{grid-column:1/-1}
+.definition-trigger-grid .guide-panel p{line-height:1.58;overflow-wrap:anywhere}
+.step-content p{overflow-wrap:anywhere}
+@media (max-width:600px){
+ .definition-trigger-grid{grid-template-columns:minmax(0,1fr)}
+ .definition-trigger-grid .guide-panel:last-child{grid-column:auto}
+}
