@@ -206,9 +206,16 @@
  }
  function eventReferenceMarkup(a,st){
   const refs=eventReferences(a,st);
-  return `<div class="event-reference-panel"><strong>RELEVANT EVENT IDs / NATIVE EVENT TYPES &amp; MEANING</strong>${refs.map(r=>`<div class="event-reference-source"><b>${esc(r.source)}</b><ul>${r.items.map(it=>`<li>${Array.isArray(it)?`<code>${esc(it[0])}</code> — ${esc(it[1])}`:esc(it)}</li>`).join('')}</ul><small>${esc(r.note)}</small></div>`).join('')}</div>`;
+  return `<div class="event-reference-panel"><strong>RELEVANT EVENT IDs / NATIVE EVENT TYPES &amp; MEANING</strong>${refs.map(r=>{
+   const items=Array.isArray(r.items)?r.items:(r.items==null?[]:[r.items]);
+   return `<div class="event-reference-source"><b>${esc(r.source||'Source-native telemetry')}</b><ul>${items.map(it=>{
+    if(Array.isArray(it)) return `<li><code>${esc(it[0]??'Event')}</code> — ${esc(it[1]??'Meaning not specified; validate against source documentation.')}</li>`;
+    if(it && typeof it==='object') return `<li>${esc(it.id??it.eventId??it.name??'Event')} — ${esc(it.meaning??it.description??it.label??JSON.stringify(it))}</li>`;
+    return `<li>${esc(String(it))}</li>`;
+   }).join('')}</ul><small>${esc(r.note||'Validate event availability and fields against the configured telemetry source.')}</small></div>`;
+  }).join('')}</div>`;
  }
-
+ 
  function stepQueryMarkup(a,st){
   const first=(a.queries||[]).find(q=>q.tool===TOOL_NAMES[0])||(a.queries||[])[0]||{tool:'Manual investigation',language:'Manual pivot guidance',purpose:'Relevant telemetry',query:'Start from the alert entity and time window; pivot using the fields listed above.',note:'No executable query was provided for this tool.'};
   const options=TOOL_NAMES.map(t=>`<option value="${esc(t)}" ${t===first.tool?'selected':''}>${esc(t)}</option>`).join('');
