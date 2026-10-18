@@ -245,7 +245,15 @@
   const q=search.value.trim().toLowerCase(), c=cat.value, s=sev.value;
   const filtered=data.filter(a=>(!q||(a.name+' '+a.category+' '+a.overview).toLowerCase().includes(q))&&(!c||a.category===c)&&(!s||a.severity.startsWith(s)));
   const shown=filtered.slice(0,visibleCount);
-  results.innerHTML=shown.map(a=>card(a)).join('')+(filtered.length>shown.length?`<div class="load-more-wrap"><button type="button" class="load-more-alerts">Load more alerts (${filtered.length-shown.length} remaining)</button></div>`:'');empty.hidden=filtered.length>0;
+  results.innerHTML=shown.map(a=>card(a)).join('')+(filtered.length>shown.length?`<div class="load-more-wrap"><button type="button" class="load-more-alerts">Load more alerts (${filtered.length-shown.length} remaining)</button></div>`:'');
+  // Initialize every rendered alert query panel and bind its source tabs.
+  results.querySelectorAll('.alert-card').forEach(cardEl=>{
+   const alertData=data.find(item=>item.id===Number(cardEl.dataset.id));
+   const selectedTool=cardEl.querySelector('[data-query-tool][aria-selected=true]');
+   const selectedQuery=alertData&&selectedTool&&alertData.queries[Number(selectedTool.dataset.queryTool)];
+   if(selectedQuery) renderPivots(cardEl,selectedQuery,0);
+  });
+  empty.hidden=filtered.length>0;
   const loadMore=results.querySelector('.load-more-alerts');if(loadMore)loadMore.addEventListener('click',()=>{visibleCount+=15;render()});
 
  }
@@ -254,6 +262,11 @@
   const i=Math.max(0,Math.min(index,pivots.length-1)), p=pivots[i];
   const pivotTabs=card.querySelector('.query-pivot-tabs');
   pivotTabs.innerHTML=pivots.map((pv,n)=>`<button type="button" data-query-pivot="${n}" aria-selected="${n===i?'true':'false'}">${esc(pv.source)}</button>`).join('');
+  // Bind each data-source tab directly to this alert/tool's own pivot list.
+  // This avoids a stale delegated handler leaving the previous query visible.
+  pivotTabs.querySelectorAll('[data-query-pivot]').forEach((button,n)=>{
+   button.addEventListener('click',()=>renderPivots(card,qdata,n));
+  });
   card.querySelector('.query-code').textContent=p.query;
   card.querySelector('.query-language').textContent=qdata.language+' · '+p.source;
   card.querySelector('.query-note').textContent=p.note||qdata.note||'Validate schema and source coverage before use.';
