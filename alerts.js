@@ -262,11 +262,9 @@
   const i=Math.max(0,Math.min(index,pivots.length-1)), p=pivots[i];
   const pivotTabs=card.querySelector('.query-pivot-tabs');
   pivotTabs.innerHTML=pivots.map((pv,n)=>`<button type="button" data-query-pivot="${n}" aria-selected="${n===i?'true':'false'}">${esc(pv.source)}</button>`).join('');
-  // Bind each data-source tab directly to this alert/tool's own pivot list.
-  // This avoids a stale delegated handler leaving the previous query visible.
-  pivotTabs.querySelectorAll('[data-query-pivot]').forEach((button,n)=>{
-   button.addEventListener('click',()=>renderPivots(card,qdata,n));
-  });
+  // Source-tab clicks are handled once by the parent results click handler.
+  // Do not attach per-render listeners here: these buttons are recreated on every
+  // selection and duplicate handlers can leave the label and query out of sync.
   card.querySelector('.query-code').textContent=p.query;
   card.querySelector('.query-language').textContent=qdata.language+' · '+p.source;
   card.querySelector('.query-note').textContent=p.note||qdata.note||'Validate schema and source coverage before use.';
@@ -470,11 +468,13 @@
   }
   const queryPivot=e.target.closest('[data-query-pivot]');
   if(queryPivot){
+   e.preventDefault();
    const card=queryPivot.closest('.alert-card');
-   const activeTool=card&&card.querySelector('[data-query-tool][aria-selected=true]');
+   const activeTool=card&&card.querySelector('[data-query-tool][aria-selected="true"]');
    const alert=card&&data.find(a=>a.id===Number(card.dataset.id));
    const qdata=alert&&activeTool&&alert.queries[Number(activeTool.dataset.queryTool)];
-   if(qdata) renderPivots(card,qdata,Number(queryPivot.dataset.queryPivot));
+   const pivotIndex=Number(queryPivot.dataset.queryPivot);
+   if(qdata && Number.isInteger(pivotIndex)) renderPivots(card,qdata,pivotIndex);
    return;
   }
   const queryCopy=e.target.closest('.query-copy-btn');
