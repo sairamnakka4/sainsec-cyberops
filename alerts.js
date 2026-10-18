@@ -454,6 +454,21 @@
   box.querySelector('.step-query-code').textContent=q.query;
   box.querySelector('.query-note').textContent=q.note;
  });
+ // Handle source/table tabs in the capture phase so other delegated click
+ // handlers cannot leave the visual selection and query panel out of sync.
+ document.addEventListener('click',e=>{
+  const queryPivot=e.target.closest && e.target.closest('[data-query-pivot]');
+  if(!queryPivot || !results.contains(queryPivot)) return;
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  const card=queryPivot.closest('.alert-card');
+  const activeTool=card&&card.querySelector('[data-query-tool][aria-selected="true"]');
+  const alert=card&&data.find(a=>a.id===Number(card.dataset.id));
+  const qdata=alert&&activeTool&&alert.queries[Number(activeTool.dataset.queryTool)];
+  const pivotIndex=Number(queryPivot.dataset.queryPivot);
+  if(qdata && Number.isInteger(pivotIndex)) renderPivots(card,qdata,pivotIndex);
+ }, true);
+
  results.addEventListener('click',e=>{
   const queryTool=e.target.closest('[data-query-tool]');
   if(queryTool){
@@ -464,17 +479,6 @@
     const qdata=alert.queries[Number(queryTool.dataset.queryTool)];
     if(qdata) renderPivots(card,qdata,0);
    }
-   return;
-  }
-  const queryPivot=e.target.closest('[data-query-pivot]');
-  if(queryPivot){
-   e.preventDefault();
-   const card=queryPivot.closest('.alert-card');
-   const activeTool=card&&card.querySelector('[data-query-tool][aria-selected="true"]');
-   const alert=card&&data.find(a=>a.id===Number(card.dataset.id));
-   const qdata=alert&&activeTool&&alert.queries[Number(activeTool.dataset.queryTool)];
-   const pivotIndex=Number(queryPivot.dataset.queryPivot);
-   if(qdata && Number.isInteger(pivotIndex)) renderPivots(card,qdata,pivotIndex);
    return;
   }
   const queryCopy=e.target.closest('.query-copy-btn');
