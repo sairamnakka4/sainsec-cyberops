@@ -48,6 +48,28 @@
   return out;
  }
 
+ function toolDefinition(name){
+  const n=(name||'').toLowerCase();
+  if(n.includes('virustotal')) return 'Multi-engine reputation and relationship lookup for URLs, domains, IPs and file hashes. Use it to compare vendor detections, timestamps and related indicators; a verdict alone is not proof.';
+  if(n.includes('abuseipdb')) return 'IP-abuse reporting service. Use report confidence, report count, recency and categories to add context to an IP; account for VPNs, proxies, NAT and shared hosting.';
+  if(n.includes('urlscan')) return 'Web-page and URL scan service. Use the final URL, redirect chain, contacted hosts, page behaviour and scan visibility to understand where a click led.';
+  if(n.includes('urlhaus')) return 'Malware URL intelligence feed. Check whether the exact URL or host is associated with malware distribution, and capture status, first-seen/last-seen and related payload indicators.';
+  if(n.includes('talos')) return 'Cisco network and IP/domain reputation lookup. Use reputation and ownership context as enrichment, then compare it with internal network and DNS telemetry.';
+  if(n.includes('messageheader')) return 'Email-header analysis tool. Use Received hops, sender alignment and SPF/DKIM/DMARC results to assess routing and possible spoofing; preserve the original headers.';
+  if(n.includes('mxtoolbox')) return 'DNS and email-domain diagnostics. Use relevant MX, SPF, DKIM, DMARC and blacklist results to validate mail/domain configuration.';
+  if(n.includes('malwarebazaar')) return 'Malware sample/hash intelligence. Search hashes and inspect sample metadata, family tags and related indicators; do not download or execute samples outside approved procedures.';
+  if(n.includes('any.run')||n.includes('triage sandbox')||n.includes('hybrid analysis')) return 'Sandbox analysis service. Review process tree, dropped files, persistence and network connections; treat sandbox heuristics as leads and submit only approved samples.';
+  if(n.includes('cyberchef')) return 'Data transformation and decoding utility. Preserve the original input and recipe, validate decoded indicators independently, and never paste secrets into an unapproved service.';
+  if(n.includes('have i been pwned')) return 'Public breach-exposure lookup. Use only approved identifiers and record breach/date/data categories; exposure context does not prove the current alert was caused by it.';
+  if(n.includes('mitre')) return 'Adversary-technique knowledge base. Use technique IDs and descriptions to guide investigation pivots only when observed evidence supports the mapping.';
+  if(n.includes('nvd')) return 'Vulnerability reference database. Verify CVE details and affected versions against the actual asset inventory and vendor advisory.';
+  if(n.includes('known exploited')) return 'CISA catalog of vulnerabilities known to be exploited. Use it to prioritize validated affected assets and remediation, not as proof the asset was exploited.';
+  if(n.includes('epss')) return 'Exploit prediction probability signal for a CVE. Combine it with exposure, asset criticality, exploit evidence and KEV status.';
+  if(n.includes('cloud controls matrix')) return 'Cloud control framework reference. Use it to identify relevant control expectations, then validate against native cloud audit evidence.';
+  if(n.includes('cisa ics')||n.includes('nist sp 800-82')) return 'OT/ICS security guidance. Use for safety-aware response and control references; coordinate actions with the authorized OT owner.';
+  if(n.includes('greynoise')) return 'Internet scanner context service. Check whether an IP is associated with common scanning activity and compare the timing with your own logs.';
+  return 'External enrichment/reference service. Use it to validate the indicator or behaviour relevant to this alert, capture the report URL and checked time, and corroborate with native telemetry.';
+ }
  function toolEvidenceGuide(a,st,o){
   const t=(a.name+' '+a.category+' '+st.title+' '+st.check).toLowerCase();
   const n=(o.name||'').toLowerCase();
@@ -202,7 +224,7 @@
     'Treat external enrichment as supporting context, not proof; validate before classifying or taking action.'
    ]);
   }
-  return `<details class="osint-tool-details"><summary aria-label="Show what to capture from ${esc(o.name)}" title="What to capture and assess"><span>▾</span></summary><div class="osint-tool-guide"><b>${esc(out[0].label)}</b><ul>${out[0].items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><small>Capture only what is relevant to this alert. Store evidence in the case, and follow your organization's data-handling policy.</small></div></details>`;
+  return `<details class="osint-tool-details"><summary aria-label="Show what to capture from ${esc(o.name)}" title="What to capture and assess"><span>▾</span></summary><div class="osint-tool-guide"><b>${esc(o.name)} — what it is / when to use it</b><p class="osint-tool-definition">${esc(toolDefinition(o.name))}</p><b>${esc(out[0].label)}</b><ul>${out[0].items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><small>Capture only what is relevant to this alert. Store evidence in the case, and follow your organization's data-handling policy.</small></div></details>`;
  }
 
  function quickLookupHtml(a,st){
@@ -225,26 +247,13 @@
   const shown=filtered.slice(0,visibleCount);
   results.innerHTML=shown.map(a=>card(a)).join('')+(filtered.length>shown.length?`<div class="load-more-wrap"><button type="button" class="load-more-alerts">Load more alerts (${filtered.length-shown.length} remaining)</button></div>`:'');empty.hidden=filtered.length>0;
   const loadMore=results.querySelector('.load-more-alerts');if(loadMore)loadMore.addEventListener('click',()=>{visibleCount+=15;render()});
-  results.querySelectorAll('[data-query-tool]').forEach(btn=>btn.addEventListener('click',()=>{
-   const card=btn.closest('.alert-card'), idx=Number(btn.dataset.queryTool), alert=data.find(a=>a.id===Number(card.dataset.id));
-   card.querySelectorAll('[data-query-tool]').forEach(b=>b.setAttribute('aria-selected',String(b===btn)));
-   const qdata=alert.queries[idx];
-   renderPivots(card,qdata,0);
-  }));
-  results.querySelectorAll('.copy-btn').forEach(btn=>{if(btn.dataset.close) return;btn.onclick=()=>{const card=btn.closest('.alert-card');const activeTool=card.querySelector('[data-query-tool][aria-selected=true]');const alert=data.find(a=>a.id===Number(card.dataset.id));const qdata=alert.queries[Number(activeTool.dataset.queryTool)];const activePivot=Number(card.querySelector('[data-query-pivot][aria-selected=true]')?.dataset.queryPivot||0);const query=(qdata.pivots&&qdata.pivots[activePivot]?qdata.pivots[activePivot].query:qdata.query);navigator.clipboard?.writeText(query);btn.textContent='Copied (if clipboard permission granted)';setTimeout(()=>btn.textContent='Copy query',1800)}});
-  results.querySelectorAll('[data-query-pivot]').forEach(btn=>btn.addEventListener('click',()=>{
-   const card=btn.closest('.alert-card'), activeTool=card.querySelector('[data-query-tool][aria-selected=true]'), alert=data.find(a=>a.id===Number(card.dataset.id)), qdata=alert.queries[Number(activeTool.dataset.queryTool)];
-   renderPivots(card,qdata,Number(btn.dataset.queryPivot));
-  }));
+
  }
  function renderPivots(card,qdata,index){
   const pivots=qdata.pivots||[{source:qdata.purpose||'Investigation query',query:qdata.query,note:qdata.note}];
   const i=Math.max(0,Math.min(index,pivots.length-1)), p=pivots[i];
   const pivotTabs=card.querySelector('.query-pivot-tabs');
   pivotTabs.innerHTML=pivots.map((pv,n)=>`<button type="button" data-query-pivot="${n}" aria-selected="${n===i?'true':'false'}">${esc(pv.source)}</button>`).join('');
-  pivotTabs.querySelectorAll('[data-query-pivot]').forEach(btn=>btn.addEventListener('click',()=>{
-   renderPivots(card,qdata,Number(btn.dataset.queryPivot));
-  }));
   card.querySelector('.query-code').textContent=p.query;
   card.querySelector('.query-language').textContent=qdata.language+' · '+p.source;
   card.querySelector('.query-note').textContent=p.note||qdata.note||'Validate schema and source coverage before use.';
@@ -435,6 +444,35 @@
   box.querySelector('.query-note').textContent=q.note;
  });
  results.addEventListener('click',e=>{
+  const queryTool=e.target.closest('[data-query-tool]');
+  if(queryTool){
+   const card=queryTool.closest('.alert-card');
+   const alert=card&&data.find(a=>a.id===Number(card.dataset.id));
+   if(alert){
+    card.querySelectorAll('[data-query-tool]').forEach(b=>b.setAttribute('aria-selected',String(b===queryTool)));
+    const qdata=alert.queries[Number(queryTool.dataset.queryTool)];
+    if(qdata) renderPivots(card,qdata,0);
+   }
+   return;
+  }
+  const queryPivot=e.target.closest('[data-query-pivot]');
+  if(queryPivot){
+   const card=queryPivot.closest('.alert-card');
+   const activeTool=card&&card.querySelector('[data-query-tool][aria-selected=true]');
+   const alert=card&&data.find(a=>a.id===Number(card.dataset.id));
+   const qdata=alert&&activeTool&&alert.queries[Number(activeTool.dataset.queryTool)];
+   if(qdata) renderPivots(card,qdata,Number(queryPivot.dataset.queryPivot));
+   return;
+  }
+  const queryCopy=e.target.closest('.query-copy-btn');
+  if(queryCopy){
+   const card=queryCopy.closest('.alert-card');
+   const query=card?.querySelector('.query-code')?.textContent||'';
+   navigator.clipboard?.writeText(query);
+   queryCopy.textContent='Copied (if permitted)';
+   setTimeout(()=>queryCopy.textContent='Copy query',1800);
+   return;
+  }
   const stepCopy=e.target.closest('.step-query-copy');
   if(stepCopy){const panel=stepCopy.closest('[data-step-query-panel]');const q=panel.querySelector('.step-query-code').textContent;navigator.clipboard?.writeText(q);stepCopy.textContent='Copied (if permitted)';setTimeout(()=>stepCopy.textContent='Copy step query / pivot',1800);return;}
   const finalCopy=e.target.closest('.final-analysis-copy');
@@ -454,5 +492,29 @@
   }
   const b=e.target.closest('[data-close]');if(!b)return;const article=b.closest('.alert-card'),a=data.find(x=>x.id===Number(article.dataset.id));const text=a.classifications[b.dataset.close].closure;navigator.clipboard?.writeText(text);b.textContent='Copied (if permitted)';setTimeout(()=>b.textContent='Copy closure template',1800)
  });
+ results.addEventListener('toggle',e=>{
+  const details=e.target;
+  if(!(details instanceof HTMLDetailsElement)||!details.matches('.osint-tool-details')||!details.open)return;
+  const step=details.closest('.step-content')||results;
+  step.querySelectorAll('.osint-tool-details[open]').forEach(other=>{if(other!==details)other.open=false;});
+  const summary=details.querySelector('summary'), panel=details.querySelector('.osint-tool-guide');
+  if(!summary||!panel)return;
+  panel.style.position='fixed';
+  panel.style.right='auto';
+  panel.style.bottom='auto';
+  panel.style.left='12px';
+  panel.style.top='12px';
+  const r=summary.getBoundingClientRect();
+  const vw=document.documentElement.clientWidth, vh=document.documentElement.clientHeight;
+  const width=Math.min(420,vw-24);
+  panel.style.width=width+'px';
+  const left=Math.max(12,Math.min(r.right-width,vw-width-12));
+  panel.style.left=left+'px';
+  const measured=panel.getBoundingClientRect();
+  let top=r.bottom+6;
+  if(top+measured.height>vh-12) top=Math.max(12,r.top-measured.height-6);
+  panel.style.top=top+'px';
+ });
+ results.addEventListener('scroll',()=>{},true);
  render();
 })();
