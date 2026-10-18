@@ -47,6 +47,164 @@
   }
   return out;
  }
+
+ function toolEvidenceGuide(a,st,o){
+  const t=(a.name+' '+a.category+' '+st.title+' '+st.check).toLowerCase();
+  const n=(o.name||'').toLowerCase();
+  const out=[];
+  const add=(label,items)=>out.push({label,items});
+  if(n.includes('virustotal')){
+   if(/url|domain|phish|email|click|web/.test(t)) add('Capture from VirusTotal URL/domain results',[
+    'Submitted indicator exactly as observed; record the URL/domain and any redirect/final URL separately.',
+    'Detection/reputation summary and which security vendors flagged it; record the checked date/time.',
+    'First submission/last analysis timestamps, categories/tags, and related communicating URLs, domains, IPs or files.',
+    'For file indicators: SHA-256, file type/size, names, signature and behaviour/relations where available.',
+    'Record the report URL and relevant screenshots/export references in the case.'
+   ]);
+   else if(/ip|network|firewall|dns|proxy|exfiltration/.test(t)) add('Capture from VirusTotal IP/domain results',[
+    'Indicator type and exact IP/domain; distinguish public IP from internal/private address.',
+    'Detection ratio and names of vendors that flagged it, checked timestamp, ASN/owner and reputation context.',
+    'Related domains, URLs, communicating files and historical resolutions/relations where available.',
+    'Compare indicator timing with proxy, DNS, firewall, endpoint and alert telemetry.',
+    'Record the report URL and key evidence; reputation alone does not prove malicious activity.'
+   ]);
+   else add('Capture from VirusTotal file/indicator results',[
+    'SHA-256 (preferred), SHA-1/MD5 if supplied, file name/type/size and signature/publisher.',
+    'Detection ratio and exact vendor labels; distinguish generic/heuristic detections from named families.',
+    'First submission/last analysis timestamps, tags, contacted URLs/IPs/domains and related samples.',
+    'Behaviour or sandbox evidence relevant to this alert; correlate with the observed host/process/time.',
+    'Record report URL and checked time. Do not upload confidential files without approval.'
+   ]);
+  } else if(n.includes('urlscan')){
+   add('Capture from urlscan.io',[
+    'Scan ID/report URL, scan timestamp, submitted URL, final URL and complete redirect chain.',
+    'Page title, screenshot, contacted domains/IPs, DNS/TLS certificate details and HTTP requests.',
+    'Suspicious downloads, forms, credential collection, brand impersonation, scripts and third-party hosts relevant to this alert.',
+    'Compare observed URLs/domains and timestamps with proxy, DNS, Safe Links and endpoint/browser telemetry.',
+    'Check scan visibility before submission; public scans can expose submitted indicators.'
+   ]);
+  } else if(n.includes('urlhaus')){
+   add('Capture from URLhaus',[
+    'Exact URL/host, URLhaus status (listed/not found), date added/last seen and reference/report URL.',
+    'Threat tags, malware family or campaign labels, payload/download URLs and related hosts when available.',
+    'Compare the URL and observation time with the message click, proxy/DNS and endpoint events.',
+    'Record whether the exact URL or only the parent domain matched; avoid treating a domain-only match as conclusive.',
+    'A missing listing does not mean safe; a listing is one lead to corroborate.'
+   ]);
+  } else if(n.includes('abuseipdb')){
+   add('Capture from AbuseIPDB',[
+    'Exact IP, confidence-of-abuse score, total reports and last-reported timestamp.',
+    'Report categories, recency, source context and whether reports align with the observed behaviour.',
+    'Check whether the IP is a VPN, proxy, hosting provider, NAT or shared egress address where known.',
+    'Correlate with source/destination, authentication or network logs for the same time window.',
+    'Record report URL and checked time; shared/reputation data is not proof by itself.'
+   ]);
+  } else if(n.includes('talos')){
+   add('Capture from Cisco Talos',[
+    'Exact IP/domain and Talos reputation/category with lookup timestamp.',
+    'Network owner/ASN and any available email/web reputation context.',
+    'Compare reputation with internal DNS, proxy, firewall, mail and authentication records.',
+    'Record report URL and any conflicting results from other sources; reputation can be stale.'
+   ]);
+  } else if(n.includes('messageheader')){
+   add('Capture from message-header analysis',[
+    'Message-ID, sender/recipient, subject and original message timestamp/timezone.',
+    'Received hops in order, originating IP where supported, and unexpected relays or routing changes.',
+    'SPF, DKIM and DMARC results plus Return-Path vs From/Reply-To alignment.',
+    'Preserve original headers; correlate Message-ID with mail trace, message delivery and URL-click events.',
+    'Do not conclude legitimacy from passing SPF/DKIM/DMARC alone.'
+   ]);
+  } else if(n.includes('mxtoolbox')){
+   add('Capture from MXToolbox',[
+    'Domain queried, lookup type, result and timestamp.',
+    'Relevant MX, SPF, DKIM selector, DMARC, DNS or blacklist findings for this alert.',
+    'Record exact host/record and TTL or listed source when displayed.',
+    'Compare with authoritative DNS and tenant mail configuration; results may be cached or incomplete.'
+   ]);
+  } else if(n.includes('malwarebazaar')){
+   add('Capture from MalwareBazaar',[
+    'Exact hash searched (prefer SHA-256), match/no-match, sample first-seen date and report reference.',
+    'Malware family/tags, file type, signature and associated campaign indicators when available.',
+    'Correlate hash and related indicators with endpoint file/process events and quarantine status.',
+    'Do not download or execute samples unless approved lab procedures allow it.'
+   ]);
+  } else if(n.includes('any.run')||n.includes('triage sandbox')||n.includes('hybrid analysis')){
+   add('Capture from sandbox report',[
+    'Submission/report ID, sample hash, environment/OS and analysis timestamp.',
+    'Process tree, command lines, dropped files, persistence changes and security-control evasion.',
+    'DNS/HTTP/TLS connections, contacted IPs/domains/URLs, payload hashes and observed indicators.',
+    'Separate observed behaviour from sandbox heuristics; correlate with actual endpoint evidence.',
+    'Only submit approved samples; follow data-handling policy and do not execute on production systems.'
+   ]);
+  } else if(n.includes('cyberchef')){
+   add('Capture from CyberChef analysis',[
+    'Original input source and exact transformation/recipe used; preserve the original value.',
+    'Decoded output, encoding type and any extracted URLs, domains, IPs, hashes or commands.',
+    'Validate decoded values independently; decoding is analysis, not proof of maliciousness.',
+    'Do not paste secrets, tokens or confidential data into unapproved environments.'
+   ]);
+  } else if(n.includes('have i been pwned')){
+   add('Capture from breach lookup',[
+    'Use only approved public account/domain lookup; avoid submitting internal identifiers without authorization.',
+    'Record matching breach name/date and exposed data categories if returned; do not copy exposed secrets.',
+    'Correlate exposure date with password/MFA changes and authentication telemetry.',
+    'A breach match indicates exposure context, not proof that the current alert is caused by it.'
+   ]);
+  } else if(n.includes('mitre att&ck')){
+   add('Capture from MITRE ATT&CK',[
+    'Technique/sub-technique ID and name only when observed behaviours support the mapping.',
+    'Record the exact behaviour/evidence that supports the mapping and the relevant platform.',
+    'Use technique mapping to guide pivots and coverage review; it is not an indicator reputation verdict.'
+   ]);
+  } else if(n.includes('nvd cve')){
+   add('Capture from NVD',[
+    'CVE ID, affected product/version and vendor advisory references.',
+    'CVSS vector/severity, known affected configurations and required conditions.',
+    'Compare with verified asset inventory, version, exposure and compensating controls.',
+    'Record publication/modified dates; do not assume vulnerable until asset/version is confirmed.'
+   ]);
+  } else if(n.includes('known exploited')){
+   add('Capture from CISA KEV',[
+    'Exact CVE match, catalog date added and remediation due date where listed.',
+    'Required action and vendor patch/advisory reference.',
+    'Correlate with asset exposure, installed version and available exploitation evidence.'
+   ]);
+  } else if(n.includes('epss')){
+   add('Capture from EPSS',[
+    'CVE ID, EPSS probability and score date.',
+    'Use as a likelihood signal alongside asset exposure, exploit availability, business criticality and KEV status.',
+    'EPSS is not proof of exploitation on the affected asset.'
+   ]);
+  } else if(n.includes('mitre')&&n.includes('ics')){
+   add('Capture from MITRE ATT&CK for ICS',[
+    'Technique ID/name and affected ICS platform/level where supported by evidence.',
+    'Observed control-system action, asset, function/operation and timestamp.',
+    'Validate against passive network capture, engineering workstation logs and OT owner context.'
+   ]);
+  } else if(n.includes('cisa ics')||n.includes('nist sp 800-82')){
+   add('Capture from OT guidance',[
+    'Relevant recommended control/response practice and the OT asset/process it applies to.',
+    'Safety, availability and process impact checks required before any response action.',
+    'Record OT owner approval and the approved change/incident procedure; avoid unapproved active scans or isolation.'
+   ]);
+  } else if(n.includes('cloud controls matrix')||n.includes('mitre att&ck cloud')){
+   add('Capture from cloud control/technique reference',[
+    'Control or technique ID/name and the observed cloud service/API action.',
+    'Actor identity, target resource, operation, result/status, request/correlation ID and timestamp from native audit logs.',
+    'Record the mapping rationale; external framework pages do not replace provider audit evidence.'
+   ]);
+  } else {
+   add('Capture and assess for this alert',[
+    `Record the exact indicator/entity related to "${a.name}" and the lookup/report URL.`,
+    'Capture verdict/reputation, supporting details, timestamps and relevant related indicators available from this service.',
+    'Correlate results with the alert time, affected user/host/resource and native telemetry.',
+    'Record checked time, evidence reference and any conflicting or unavailable results.',
+    'Treat external enrichment as supporting context, not proof; validate before classifying or taking action.'
+   ]);
+  }
+  return `<details class="osint-tool-details"><summary aria-label="Show what to capture from ${esc(o.name)}" title="What to capture and assess"><span>▾</span></summary><div class="osint-tool-guide"><b>${esc(out[0].label)}</b><ul>${out[0].items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><small>Capture only what is relevant to this alert. Store evidence in the case, and follow your organization's data-handling policy.</small></div></details>`;
+ }
+
  function quickLookupHtml(a,st){
   const text=(a.name+' '+a.category+' '+st.title+' '+st.check).toLowerCase();
   let types=[];
@@ -258,7 +416,7 @@
  }
  function card(a){
   const refs=a.references.map(r=>`<a href="${esc(r[1])}" target="_blank" rel="noopener noreferrer">${esc(r[0])} ↗</a>`).join('');
-  const steps=a.steps.map(st=>`<details class="step-panel"><summary><span>${String(st.n).padStart(2,'0')}</span>${esc(st.title)}</summary><div class="step-content"><p><strong>WHAT TO CHECK</strong><br>${esc(st.check)}</p><p><strong>FIELDS TO CAPTURE</strong><br>${esc(st.fields)}</p>${eventReferenceMarkup(a,st)}${stepQueryMarkup(a,st)}${(st.osint&&st.osint.length)||contextualTools(a,st).length?`<div class="osint-links"><strong>Useful tools for this investigation step</strong>${[...(st.osint||[]),...contextualTools(a,st)].filter((o,i,arr)=>arr.findIndex(x=>x.name===o.name)===i).map(o=>`<a href="${esc(o.url)}" target="_blank" rel="noopener noreferrer">${esc(o.name)} ↗</a>`).join('')}<small>Check the specific evidence relevant to this alert. Reputation and sandbox results are leads, not proof.</small></div>`:''}${quickLookupHtml(a,st)}</div></details>`).join('');
+  const steps=a.steps.map(st=>`<details class="step-panel"><summary><span>${String(st.n).padStart(2,'0')}</span>${esc(st.title)}</summary><div class="step-content"><p><strong>WHAT TO CHECK</strong><br>${esc(st.check)}</p><p><strong>FIELDS TO CAPTURE</strong><br>${esc(st.fields)}</p>${eventReferenceMarkup(a,st)}${stepQueryMarkup(a,st)}${(st.osint&&st.osint.length)||contextualTools(a,st).length?`<div class="osint-links"><strong>Useful tools for this investigation step</strong>${[...(st.osint||[]),...contextualTools(a,st)].filter((o,i,arr)=>arr.findIndex(x=>x.name===o.name)===i).map(o=>`<div class="osint-tool"><a href="${esc(o.url)}" target="_blank" rel="noopener noreferrer">${esc(o.name)} ↗</a>${toolEvidenceGuide(a,st,o)}</div>`).join('')}<small>Check the specific evidence relevant to this alert. Reputation and sandbox results are leads, not proof.</small></div>`:''}${quickLookupHtml(a,st)}</div></details>`).join('');
   const classes=Object.entries(a.classifications).map(([k,v])=>`<div class="classification-panel"><h4>${esc(k)}</h4><p><b>Recommendation</b><br>${esc(v.recommendation)}</p><p><b>Sample closure comment</b><br>${esc(v.closure)}</p><button class="copy-btn" data-close="${esc(k)}">Copy closure template</button></div>`).join('');
   const qs=a.queries.map((q,i)=>`<button type="button" data-query-tool="${i}" aria-selected="${i===0?'true':'false'}">${esc(q.tool)}</button>`).join('');
   const first=a.queries[0];
